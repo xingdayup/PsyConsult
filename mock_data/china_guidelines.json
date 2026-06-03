@@ -1,0 +1,1260 @@
+{
+  "nodes": [
+    {
+      "id": "抑郁障碍",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd_code",
+          "value": "F32/F33"
+        },
+        {
+          "key": "full_name",
+          "value": "Major Depressive Disorder"
+        }
+      ]
+    },
+    {
+      "id": "精神分裂症",
+      "label": "Disease",
+      "properties": []
+    },
+    {
+      "id": "双相障碍",
+      "label": "Disease",
+      "properties": []
+    },
+    {
+      "id": "焦虑障碍",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd_code",
+          "value": "F40/F41"
+        },
+        {
+          "key": "full_name",
+          "value": "Anxiety Disorders (e.g., GAD, Panic Disorder)"
+        }
+      ]
+    },
+    {
+      "id": "广泛性焦虑障碍",
+      "label": "Disease",
+      "properties": []
+    },
+    {
+      "id": "惊恐障碍",
+      "label": "Disease",
+      "properties": []
+    },
+    {
+      "id": "轻中度抑郁",
+      "label": "Subtype",
+      "properties": []
+    },
+    {
+      "id": "中重度抑郁",
+      "label": "Subtype",
+      "properties": []
+    },
+    {
+      "id": "伴精神病性症状",
+      "label": "Subtype",
+      "properties": []
+    },
+    {
+      "id": "难治性抑郁",
+      "label": "Subtype",
+      "properties": []
+    },
+    {
+      "id": "躁狂发作",
+      "label": "Phase",
+      "properties": []
+    },
+    {
+      "id": "抑郁发作（双相抑郁）",
+      "label": "Phase",
+      "properties": []
+    },
+    {
+      "id": "维持治疗",
+      "label": "Phase",
+      "properties": []
+    },
+    {
+      "id": "急性期治疗",
+      "label": "Phase",
+      "properties": []
+    },
+    {
+      "id": "维持期治疗",
+      "label": "Phase",
+      "properties": []
+    },
+    {
+      "id": "SSRI",
+      "label": "DrugClass",
+      "properties": []
+    },
+    {
+      "id": "SNRI",
+      "label": "DrugClass",
+      "properties": []
+    },
+    {
+      "id": "非典型抗精神病药",
+      "label": "DrugClass",
+      "properties": []
+    },
+    {
+      "id": "心境稳定剂",
+      "label": "DrugClass",
+      "properties": []
+    },
+    {
+      "id": "苯二氮卓类药物",
+      "label": "DrugClass",
+      "properties": []
+    },
+    {
+      "id": "长效针剂",
+      "label": "DrugFormulation",
+      "properties": []
+    },
+    {
+      "id": "CBT",
+      "label": "Treatment",
+      "properties": [
+        {
+          "key": "full_name",
+          "value": "认知行为治疗"
+        },
+        {
+          "key": "acronym",
+          "value": "CBT"
+        },
+        {
+          "key": "role_in_OCD",
+          "value": "Adjunct to SSRI in partial responders"
+        }
+      ]
+    },
+    {
+      "id": "IPT",
+      "label": "Treatment",
+      "properties": [
+        {
+          "key": "full_name",
+          "value": "人际心理治疗"
+        }
+      ]
+    },
+    {
+      "id": "ECT",
+      "label": "Treatment",
+      "properties": [
+        {
+          "key": "full_name",
+          "value": "电抽搐治疗"
+        }
+      ]
+    },
+    {
+      "id": "放松训练",
+      "label": "Treatment",
+      "properties": []
+    },
+    {
+      "id": "正念疗法",
+      "label": "Treatment",
+      "properties": []
+    },
+    {
+      "id": "换药",
+      "label": "TreatmentStrategy",
+      "properties": []
+    },
+    {
+      "id": "增效",
+      "label": "TreatmentStrategy",
+      "properties": []
+    },
+    {
+      "id": "舍曲林",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "SSRI"
+        },
+        {
+          "key": "generic_name",
+          "value": "Sertraline"
+        },
+        {
+          "key": "is_first_line_for_OCD",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "id": "帕罗西汀",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "SSRI"
+        },
+        {
+          "key": "generic_name",
+          "value": "Paroxetine"
+        },
+        {
+          "key": "is_first_line_for_OCD",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "id": "氟西汀",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "SSRI"
+        },
+        {
+          "key": "generic_name",
+          "value": "Fluoxetine"
+        },
+        {
+          "key": "is_first_line_for_OCD",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "id": "文拉法辛",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "SNRI"
+        }
+      ]
+    },
+    {
+      "id": "度洛西汀",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "SNRI"
+        }
+      ]
+    },
+    {
+      "id": "奥氮平",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "非典型抗精神病药"
+        }
+      ]
+    },
+    {
+      "id": "阿立哌唑",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "非典型抗精神病药"
+        },
+        {
+          "key": "generic_name",
+          "value": "Aripiprazole"
+        },
+        {
+          "key": "use_in_OCD",
+          "value": "Augmentation agent for SSRI-resistant OCD"
+        }
+      ]
+    },
+    {
+      "id": "利培酮",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "非典型抗精神病药"
+        },
+        {
+          "key": "generic_name",
+          "value": "Risperidone"
+        },
+        {
+          "key": "use_in_OCD",
+          "value": "Augmentation agent for SSRI-resistant OCD"
+        }
+      ]
+    },
+    {
+      "id": "喹硫平",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "非典型抗精神病药"
+        }
+      ]
+    },
+    {
+      "id": "齐拉西酮",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "非典型抗精神病药"
+        }
+      ]
+    },
+    {
+      "id": "锂盐",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "心境稳定剂"
+        }
+      ]
+    },
+    {
+      "id": "丙戊酸钠",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "心境稳定剂"
+        }
+      ]
+    },
+    {
+      "id": "拉莫三嗪",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "心境稳定剂"
+        }
+      ]
+    },
+    {
+      "id": "阿普唑仑",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "苯二氮卓类药物"
+        }
+      ]
+    },
+    {
+      "id": "劳拉西泮",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "苯二氮卓类药物"
+        }
+      ]
+    },
+    {
+      "id": "地西泮",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "苯二氮卓类药物"
+        }
+      ]
+    },
+    {
+      "id": "帕利哌酮棕榈酸酯",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "formulation",
+          "value": "长效针剂"
+        }
+      ]
+    },
+    {
+      "id": "利培酮微球",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "formulation",
+          "value": "长效针剂"
+        }
+      ]
+    },
+    {
+      "id": "奥氮平长效制剂",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "formulation",
+          "value": "长效针剂"
+        }
+      ]
+    },
+    {
+      "id": "普瑞巴林",
+      "label": "Drug",
+      "properties": []
+    },
+    {
+      "id": "丁螺环酮",
+      "label": "Drug",
+      "properties": []
+    },
+    {
+      "id": "氯米帕明",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "Tricyclic Antidepressant (TCA)"
+        },
+        {
+          "key": "generic_name",
+          "value": "Clomipramine"
+        },
+        {
+          "key": "is_second_line_for_OCD",
+          "value": "true"
+        },
+        {
+          "key": "has_high_efficacy_in_OCD",
+          "value": "true"
+        },
+        {
+          "key": "has_high_side_effect_burden",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "id": "0.6-1.2 mmol/L",
+      "label": "TherapeuticRange",
+      "properties": [
+        {
+          "key": "parameter",
+          "value": "血锂浓度"
+        }
+      ]
+    },
+    {
+      "id": "甲状腺功能",
+      "label": "MonitoringParameter",
+      "properties": []
+    },
+    {
+      "id": "肾功能",
+      "label": "MonitoringParameter",
+      "properties": []
+    },
+    {
+      "id": "强迫症",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd_code",
+          "value": "F42"
+        },
+        {
+          "key": "full_name",
+          "value": "强迫症（Obsessive-Compulsive Disorder, OCD）"
+        }
+      ]
+    },
+    {
+      "id": "减少强迫思维和强迫行为的时间，改善社会功能",
+      "label": "TreatmentGoal",
+      "properties": []
+    },
+    {
+      "id": "12 周以上评估疗效",
+      "label": "TreatmentDuration",
+      "properties": [
+        {
+          "key": "minimum_duration_weeks",
+          "value": "12"
+        }
+      ]
+    },
+    {
+      "id": "维持期 ≥1-2 年",
+      "label": "MaintenanceTherapyDuration",
+      "properties": [
+        {
+          "key": "duration_range_years",
+          "value": "1-2"
+        }
+      ]
+    },
+    {
+      "id": "氟伏沙明",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "class",
+          "value": "SSRI"
+        },
+        {
+          "key": "generic_name",
+          "value": "Fluvoxamine"
+        },
+        {
+          "key": "is_first_line_for_OCD",
+          "value": "true"
+        }
+      ]
+    },
+    {
+      "id": "150-200mg/d",
+      "label": "DoseRange",
+      "properties": [
+        {
+          "key": "unit",
+          "value": "mg/d"
+        },
+        {
+          "key": "range",
+          "value": "150-200"
+        }
+      ]
+    },
+    {
+      "id": "200mg/d",
+      "label": "MaxDose",
+      "properties": [
+        {
+          "key": "unit",
+          "value": "mg/d"
+        },
+        {
+          "key": "value",
+          "value": "200"
+        }
+      ]
+    },
+    {
+      "id": "40-80mg/d",
+      "label": "DoseRange",
+      "properties": [
+        {
+          "key": "unit",
+          "value": "mg/d"
+        },
+        {
+          "key": "range",
+          "value": "40-80"
+        }
+      ]
+    },
+    {
+      "id": "150-300mg/d",
+      "label": "DoseRange",
+      "properties": [
+        {
+          "key": "unit",
+          "value": "mg/d"
+        },
+        {
+          "key": "range",
+          "value": "150-300"
+        }
+      ]
+    },
+    {
+      "id": "暴露与反应预防 (ERP)",
+      "label": "Psychotherapy",
+      "properties": [
+        {
+          "key": "acronym",
+          "value": "ERP"
+        },
+        {
+          "key": "full_name",
+          "value": "Exposure and Response Prevention"
+        },
+        {
+          "key": "evidence_level",
+          "value": "First-line for OCD"
+        }
+      ]
+    },
+    {
+      "id": "药物治疗",
+      "label": "TreatmentModality",
+      "properties": [
+        {
+          "key": "category",
+          "value": "Pharmacotherapy"
+        }
+      ]
+    },
+    {
+      "id": "三环类抗抑郁药",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "acronym",
+          "value": "TCA"
+        }
+      ]
+    },
+    {
+      "id": "OCD 疗效强但副作用多",
+      "label": "ClinicalProfile",
+      "properties": []
+    },
+    {
+      "id": "深部脑刺激 (DBS)",
+      "label": "NeuromodulationTherapy",
+      "properties": [
+        {
+          "key": "acronym",
+          "value": "DBS"
+        },
+        {
+          "key": "full_name",
+          "value": "Deep Brain Stimulation"
+        },
+        {
+          "key": "indication",
+          "value": "Refractory OCD"
+        }
+      ]
+    },
+    {
+      "id": "重复经颅磁刺激 (rTMS)",
+      "label": "NeuromodulationTherapy",
+      "properties": [
+        {
+          "key": "acronym",
+          "value": "rTMS"
+        },
+        {
+          "key": "full_name",
+          "value": "repetitive Transcranial Magnetic Stimulation"
+        },
+        {
+          "key": "indication",
+          "value": "Refractory OCD"
+        }
+      ]
+    },
+    {
+      "id": "自知力差",
+      "label": "ClinicalFeature",
+      "properties": [
+        {
+          "key": "domain",
+          "value": "Insight"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "丁螺环酮",
+      "type": "TREATS",
+      "target": "广泛性焦虑障碍"
+    },
+    {
+      "source": "难治性抑郁",
+      "type": "HAS_TREATMENT_STRATEGY",
+      "target": "换药"
+    },
+    {
+      "source": "躁狂发作",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "心境稳定剂"
+    },
+    {
+      "source": "维持期治疗",
+      "type": "HAS_TREATMENT_OPTION",
+      "target": "长效针剂"
+    },
+    {
+      "source": "抑郁障碍",
+      "type": "HAS_SUBTYPE",
+      "target": "轻中度抑郁"
+    },
+    {
+      "source": "心境稳定剂",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "拉莫三嗪"
+    },
+    {
+      "source": "非典型抗精神病药",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "喹硫平"
+    },
+    {
+      "source": "CBT",
+      "type": "TREATS",
+      "target": "广泛性焦虑障碍"
+    },
+    {
+      "source": "惊恐障碍",
+      "type": "HAS_SECOND_LINE_TREATMENT",
+      "target": "SNRI"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_PHASE",
+      "target": "急性期治疗"
+    },
+    {
+      "source": "非典型抗精神病药",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "利培酮"
+    },
+    {
+      "source": "锂盐",
+      "type": "REQUIRES_MONITORING_OF",
+      "target": "甲状腺功能"
+    },
+    {
+      "source": "非典型抗精神病药",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "齐拉西酮"
+    },
+    {
+      "source": "广泛性焦虑障碍",
+      "type": "HAS_NON_PHARMACOLOGICAL_TREATMENT",
+      "target": "放松训练"
+    },
+    {
+      "source": "强迫症",
+      "type": "SECOND_LINE_DRUG",
+      "target": "氯米帕明"
+    },
+    {
+      "source": "抑郁发作（双相抑郁）",
+      "type": "HAS_EVIDENCE_BASED_TREATMENT",
+      "target": "喹硫平"
+    },
+    {
+      "source": "强迫症",
+      "type": "NEUROMODULATION_FOR_REFRACTORY",
+      "target": "深部脑刺激 (DBS)"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "HAS_STRONG_EVIDENCE_FOR",
+      "target": "广泛性焦虑障碍"
+    },
+    {
+      "source": "强迫症",
+      "type": "FIRST_LINE_DRUG",
+      "target": "舍曲林"
+    },
+    {
+      "source": "非典型抗精神病药",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "奥氮平"
+    },
+    {
+      "source": "抑郁障碍",
+      "type": "HAS_SUBTYPE",
+      "target": "中重度抑郁"
+    },
+    {
+      "source": "强迫症",
+      "type": "ANTIPSYCHOTIC_ADD_ON",
+      "target": "利培酮"
+    },
+    {
+      "source": "轻中度抑郁",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "SSRI"
+    },
+    {
+      "source": "非典型抗精神病药",
+      "type": "TREATS",
+      "target": "双相障碍"
+    },
+    {
+      "source": "暴露与反应预防 (ERP)",
+      "type": "IS_EVIDENCE_BASED_FOR",
+      "target": "强迫症"
+    },
+    {
+      "source": "难治性抑郁",
+      "type": "HAS_TREATMENT_STRATEGY",
+      "target": "增效"
+    },
+    {
+      "source": "普瑞巴林",
+      "type": "TREATS",
+      "target": "广泛性焦虑障碍"
+    },
+    {
+      "source": "强迫症",
+      "type": "FIRST_LINE_DRUG",
+      "target": "帕罗西汀"
+    },
+    {
+      "source": "惊恐障碍",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "SSRI"
+    },
+    {
+      "source": "广泛性焦虑障碍",
+      "type": "HAS_SECOND_LINE_TREATMENT",
+      "target": "普瑞巴林"
+    },
+    {
+      "source": "轻中度抑郁",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "SNRI"
+    },
+    {
+      "source": "抑郁障碍",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "SSRI"
+    },
+    {
+      "source": "惊恐障碍",
+      "type": "HAS_SECOND_LINE_TREATMENT",
+      "target": "氯米帕明"
+    },
+    {
+      "source": "舍曲林",
+      "type": "MAX_DOSE",
+      "target": "200mg/d"
+    },
+    {
+      "source": "维持治疗",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "锂盐"
+    },
+    {
+      "source": "中重度抑郁",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "非典型抗精神病药"
+    },
+    {
+      "source": "长效针剂",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "帕利哌酮棕榈酸酯"
+    },
+    {
+      "source": "锂盐",
+      "type": "REDUCES_SUICIDE_RISK_IN",
+      "target": "双相障碍"
+    },
+    {
+      "source": "抑郁障碍",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "SNRI"
+    },
+    {
+      "source": "广泛性焦虑障碍",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "SSRI"
+    },
+    {
+      "source": "舍曲林",
+      "type": "TARGET_DOSE",
+      "target": "150-200mg/d"
+    },
+    {
+      "source": "氟西汀",
+      "type": "TARGET_DOSE",
+      "target": "40-80mg/d"
+    },
+    {
+      "source": "强迫症",
+      "type": "HAS_TREATMENT_GOAL",
+      "target": "减少强迫思维和强迫行为的时间，改善社会功能"
+    },
+    {
+      "source": "强迫症",
+      "type": "NEUROMODULATION_FOR_REFRACTORY",
+      "target": "重复经颅磁刺激 (rTMS)"
+    },
+    {
+      "source": "喹硫平",
+      "type": "HAS_EVIDENCE_FOR",
+      "target": "双相抑郁"
+    },
+    {
+      "source": "苯二氮卓类药物",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "劳拉西泮"
+    },
+    {
+      "source": "锂盐",
+      "type": "REQUIRES_MONITORING_OF",
+      "target": "肾功能"
+    },
+    {
+      "source": "中重度抑郁",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "SSRI"
+    },
+    {
+      "source": "双相障碍",
+      "type": "HAS_PHASE",
+      "target": "抑郁发作（双相抑郁）"
+    },
+    {
+      "source": "广泛性焦虑障碍",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "SNRI"
+    },
+    {
+      "source": "广泛性焦虑障碍",
+      "type": "HAS_ACUTE_ONLY_TREATMENT",
+      "target": "苯二氮卓类药物"
+    },
+    {
+      "source": "强迫症",
+      "type": "FIRST_LINE_DRUG",
+      "target": "氟伏沙明"
+    },
+    {
+      "source": "SNRI",
+      "type": "TREATS",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_PHASE",
+      "target": "维持期治疗"
+    },
+    {
+      "source": "躁狂发作",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "非典型抗精神病药"
+    },
+    {
+      "source": "焦虑障碍",
+      "type": "HAS_SUBTYPE",
+      "target": "惊恐障碍"
+    },
+    {
+      "source": "苯二氮卓类药物",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "阿普唑仑"
+    },
+    {
+      "source": "急性期治疗",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "非典型抗精神病药"
+    },
+    {
+      "source": "SSRI",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "氟西汀"
+    },
+    {
+      "source": "长效针剂",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "利培酮微球"
+    },
+    {
+      "source": "SNRI",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "度洛西汀"
+    },
+    {
+      "source": "ECT",
+      "type": "TREATS",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "伴精神病性症状",
+      "type": "REQUIRES_COMBINATION_WITH",
+      "target": "抗精神病药"
+    },
+    {
+      "source": "抑郁障碍",
+      "type": "HAS_SUBTYPE",
+      "target": "伴精神病性症状"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_SECOND_LINE_TREATMENT",
+      "target": "苯二氮卓类药物"
+    },
+    {
+      "source": "中重度抑郁",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "SNRI"
+    },
+    {
+      "source": "强迫症",
+      "type": "REQUIRES_MINIMUM_TREATMENT_DURATION",
+      "target": "12 周以上评估疗效"
+    },
+    {
+      "source": "双相障碍",
+      "type": "HAS_PHASE",
+      "target": "维持治疗"
+    },
+    {
+      "source": "SSRI",
+      "type": "TREATS",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "长效针剂",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "奥氮平长效制剂"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_FIRST_LINE_TREATMENT",
+      "target": "非典型抗精神病药"
+    },
+    {
+      "source": "强迫症",
+      "type": "ASSOCIATED_WITH_POORER_TREATMENT_RESPONSE",
+      "target": "自知力差"
+    },
+    {
+      "source": "心境稳定剂",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "丙戊酸钠"
+    },
+    {
+      "source": "暴露与反应预防 (ERP)",
+      "type": "HAS_COMPARABLE_OR_SUPERIOR_EFFICACY_TO",
+      "target": "药物治疗"
+    },
+    {
+      "source": "心境稳定剂",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "锂盐"
+    },
+    {
+      "source": "CBT",
+      "type": "TREATS",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "强迫症",
+      "type": "COMMONLY_COMORBID_WITH",
+      "target": "焦虑障碍"
+    },
+    {
+      "source": "强迫症",
+      "type": "PSYCHOTHERAPY_ADD_ON",
+      "target": "CBT"
+    },
+    {
+      "source": "伴精神病性症状",
+      "type": "REQUIRES_COMBINATION_WITH",
+      "target": "抗抑郁药"
+    },
+    {
+      "source": "广泛性焦虑障碍",
+      "type": "HAS_NON_PHARMACOLOGICAL_TREATMENT",
+      "target": "CBT"
+    },
+    {
+      "source": "强迫症",
+      "type": "REQUIRES_MAINTENANCE_THERAPY",
+      "target": "维持期 ≥1-2 年"
+    },
+    {
+      "source": "非典型抗精神病药",
+      "type": "TREATS",
+      "target": "精神分裂症"
+    },
+    {
+      "source": "强迫症",
+      "type": "COMMONLY_COMORBID_WITH",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "抑郁障碍",
+      "type": "HAS_SECOND_LINE_TREATMENT",
+      "target": "ECT"
+    },
+    {
+      "source": "难治性抑郁",
+      "type": "HAS_TREATMENT_STRATEGY",
+      "target": "ECT"
+    },
+    {
+      "source": "焦虑障碍",
+      "type": "HAS_SUBTYPE",
+      "target": "广泛性焦虑障碍"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "TARGET_DOSE",
+      "target": "150-300mg/d"
+    },
+    {
+      "source": "氯米帕明",
+      "type": "HAS_CLINICAL_PROFILE",
+      "target": "OCD 疗效强但副作用多"
+    },
+    {
+      "source": "SSRI",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "舍曲林"
+    },
+    {
+      "source": "氯米帕明",
+      "type": "IS_SUBCLASS_OF",
+      "target": "三环类抗抑郁药"
+    },
+    {
+      "source": "抑郁障碍",
+      "type": "HAS_NON_PHARMACOLOGICAL_TREATMENT",
+      "target": "IPT"
+    },
+    {
+      "source": "CBT",
+      "type": "TREATS",
+      "target": "惊恐障碍"
+    },
+    {
+      "source": "心境稳定剂",
+      "type": "TREATS",
+      "target": "双相障碍"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "HAS_STRONG_EVIDENCE_FOR",
+      "target": "广泛性焦虑障碍"
+    },
+    {
+      "source": "SSRI",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "帕罗西汀"
+    },
+    {
+      "source": "非典型抗精神病药",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "阿立哌唑"
+    },
+    {
+      "source": "强迫症",
+      "type": "FIRST_LINE_PSYCHOTHERAPY",
+      "target": "暴露与反应预防 (ERP)"
+    },
+    {
+      "source": "抑郁障碍",
+      "type": "HAS_SECOND_LINE_TREATMENT",
+      "target": "非典型抗精神病药"
+    },
+    {
+      "source": "惊恐障碍",
+      "type": "HAS_NON_PHARMACOLOGICAL_TREATMENT",
+      "target": "CBT"
+    },
+    {
+      "source": "强迫症",
+      "type": "PSYCHOTHERAPY_ADD_ON",
+      "target": "ERP"
+    },
+    {
+      "source": "双相障碍",
+      "type": "HAS_PHASE",
+      "target": "躁狂发作"
+    },
+    {
+      "source": "锂盐",
+      "type": "HAS_THERAPEUTIC_RANGE",
+      "target": "0.6-1.2 mmol/L"
+    },
+    {
+      "source": "强迫症",
+      "type": "FIRST_LINE_DRUG",
+      "target": "氟西汀"
+    },
+    {
+      "source": "强迫症",
+      "type": "ANTIPSYCHOTIC_ADD_ON",
+      "target": "阿立哌唑"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_MAINTENANCE_TREATMENT",
+      "target": "长效针剂"
+    },
+    {
+      "source": "抑郁障碍",
+      "type": "HAS_NON_PHARMACOLOGICAL_TREATMENT",
+      "target": "CBT"
+    },
+    {
+      "source": "SNRI",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "文拉法辛"
+    },
+    {
+      "source": "广泛性焦虑障碍",
+      "type": "HAS_SECOND_LINE_TREATMENT",
+      "target": "丁螺环酮"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "HAS_PROPHYLACTIC_EVIDENCE_FOR",
+      "target": "双相抑郁"
+    },
+    {
+      "source": "躁狂发作",
+      "type": "HAS_SECOND_LINE_TREATMENT",
+      "target": "苯二氮卓类药物"
+    },
+    {
+      "source": "氯米帕明",
+      "type": "TREATS",
+      "target": "惊恐障碍"
+    },
+    {
+      "source": "急性期治疗",
+      "type": "HAS_SECOND_LINE_TREATMENT",
+      "target": "苯二氮卓类药物"
+    },
+    {
+      "source": "抑郁障碍",
+      "type": "HAS_SUBTYPE",
+      "target": "难治性抑郁"
+    },
+    {
+      "source": "抑郁发作（双相抑郁）",
+      "type": "HAS_BASE_TREATMENT",
+      "target": "心境稳定剂"
+    },
+    {
+      "source": "广泛性焦虑障碍",
+      "type": "HAS_NON_PHARMACOLOGICAL_TREATMENT",
+      "target": "正念疗法"
+    },
+    {
+      "source": "苯二氮卓类药物",
+      "type": "HAS_DRUG_INSTANCE",
+      "target": "地西泮"
+    },
+    {
+      "source": "抑郁发作（双相抑郁）",
+      "type": "HAS_PROPHYLACTIC_EFFECT",
+      "target": "拉莫三嗪"
+    }
+  ]
+}

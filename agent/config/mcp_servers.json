@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "clinical_tools": {
+      "command": "python",
+      "args": ["-m", "mcp_servers.clinical_tools"],
+      "cwd": "agent",
+      "transport": "stdio"
+    }
+  }
+}

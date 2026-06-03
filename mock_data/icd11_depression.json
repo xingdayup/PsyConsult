@@ -1,0 +1,510 @@
+{
+  "nodes": [
+    {
+      "id": "抑郁发作",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "ICD-11_code",
+          "value": "6A70"
+        },
+        {
+          "key": "definition",
+          "value": "单次抑郁发作，需满足核心症状和附加症状标准"
+        }
+      ]
+    },
+    {
+      "id": "抑郁心境",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "duration_requirement",
+          "value": "几乎每天大部分时间，持续≥2周"
+        },
+        {
+          "key": "assessment_method",
+          "value": "主观报告或他人观察"
+        }
+      ]
+    },
+    {
+      "id": "兴趣或快感减退",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "duration_requirement",
+          "value": "几乎每天，对几乎所有活动"
+        }
+      ]
+    },
+    {
+      "id": "精力减退或疲乏",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "duration_requirement",
+          "value": "几乎每天"
+        }
+      ]
+    },
+    {
+      "id": "注意力减退或犹豫不决",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "自我评价低或自责自罪",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "对未来的无望感",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "睡眠障碍",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "subtypes",
+          "value": "失眠或嗜睡"
+        }
+      ]
+    },
+    {
+      "id": "食欲改变",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "associated_change",
+          "value": "体重变化（1月内>5%）"
+        }
+      ]
+    },
+    {
+      "id": "精神运动性激越或迟滞",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "自杀观念或行为",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "轻度抑郁发作",
+      "label": "Severity",
+      "properties": [
+        {
+          "key": "core_symptoms",
+          "value": "≥2条"
+        },
+        {
+          "key": "additional_symptoms",
+          "value": "≥2条"
+        },
+        {
+          "key": "functional_impact",
+          "value": "轻度受损"
+        }
+      ]
+    },
+    {
+      "id": "中度抑郁发作",
+      "label": "Severity",
+      "properties": [
+        {
+          "key": "core_symptoms",
+          "value": "≥2条"
+        },
+        {
+          "key": "additional_symptoms",
+          "value": "3–4条"
+        },
+        {
+          "key": "functional_impact",
+          "value": "中度受损"
+        }
+      ]
+    },
+    {
+      "id": "重度抑郁发作",
+      "label": "Severity",
+      "properties": [
+        {
+          "key": "core_symptoms",
+          "value": "3条"
+        },
+        {
+          "key": "additional_symptoms",
+          "value": "≥5条"
+        },
+        {
+          "key": "functional_impact",
+          "value": "严重受损"
+        },
+        {
+          "key": "psychotic_features",
+          "value": "可伴"
+        }
+      ]
+    },
+    {
+      "id": "核心症状≥2条",
+      "label": "Criterion",
+      "properties": [
+        {
+          "key": "description",
+          "value": "抑郁心境、兴趣/快感减退、精力减退中至少2项"
+        }
+      ]
+    },
+    {
+      "id": "附加症状≥2条",
+      "label": "Criterion",
+      "properties": [
+        {
+          "key": "description",
+          "value": "从第4–10项症状中满足相应数量"
+        }
+      ]
+    },
+    {
+      "id": "附加症状≥3-4条",
+      "label": "Criterion",
+      "properties": [
+        {
+          "key": "description",
+          "value": "从第4–10项症状中满足3–4项"
+        }
+      ]
+    },
+    {
+      "id": "附加症状≥5条",
+      "label": "Criterion",
+      "properties": [
+        {
+          "key": "description",
+          "value": "从第4–10项症状中满足≥5项"
+        }
+      ]
+    },
+    {
+      "id": "功能轻度受损",
+      "label": "FunctionalImpact",
+      "properties": []
+    },
+    {
+      "id": "功能中度受损",
+      "label": "FunctionalImpact",
+      "properties": []
+    },
+    {
+      "id": "功能严重受损",
+      "label": "FunctionalImpact",
+      "properties": []
+    },
+    {
+      "id": "精神病性症状",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "note",
+          "value": "仅见于重度抑郁发作"
+        }
+      ]
+    },
+    {
+      "id": "物质使用",
+      "label": "ExclusionFactor",
+      "properties": [
+        {
+          "key": "explanation",
+          "value": "抑郁症状不能归因于物质使用所致"
+        }
+      ]
+    },
+    {
+      "id": "躯体疾病",
+      "label": "ExclusionFactor",
+      "properties": [
+        {
+          "key": "explanation",
+          "value": "抑郁症状不能由躯体疾病直接引起"
+        }
+      ]
+    },
+    {
+      "id": "双相障碍",
+      "label": "DifferentialDiagnosis",
+      "properties": [
+        {
+          "key": "explanation",
+          "value": "需排除既往或当前存在躁狂/轻躁狂发作"
+        }
+      ]
+    },
+    {
+      "id": "精神分裂症",
+      "label": "DifferentialDiagnosis",
+      "properties": [
+        {
+          "key": "explanation",
+          "value": "抑郁症状不能更好解释为精神分裂症等原发性精神病性障碍"
+        }
+      ]
+    },
+    {
+      "id": "躁狂发作",
+      "label": "Episode",
+      "properties": [
+        {
+          "key": "ICD-11_code",
+          "value": "6A60"
+        }
+      ]
+    },
+    {
+      "id": "轻躁狂发作",
+      "label": "Episode",
+      "properties": [
+        {
+          "key": "ICD-11_code",
+          "value": "6A61"
+        }
+      ]
+    },
+    {
+      "id": "复发性抑郁障碍",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "ICD-11_code",
+          "value": "6A71"
+        },
+        {
+          "key": "definition",
+          "value": "至少2次符合6A70标准的抑郁发作，间歇期≥2个月无明显症状"
+        }
+      ]
+    },
+    {
+      "id": "间歇期≥2个月无明显症状",
+      "label": "Criterion",
+      "properties": [
+        {
+          "key": "description",
+          "value": "两次抑郁发作之间无显著抑郁症状持续≥2个月"
+        }
+      ]
+    },
+    {
+      "id": "恶劣心境",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "ICD-11_code",
+          "value": "6A73"
+        },
+        {
+          "key": "definition",
+          "value": "慢性抑郁心境持续≥2年，症状未达抑郁发作标准但具有临床意义"
+        }
+      ]
+    },
+    {
+      "id": "持续时间≥2年",
+      "label": "Criterion",
+      "properties": [
+        {
+          "key": "description",
+          "value": "抑郁心境几乎每天存在，持续至少2年"
+        }
+      ]
+    },
+    {
+      "id": "症状较轻但慢性化",
+      "label": "Characteristic",
+      "properties": [
+        {
+          "key": "note",
+          "value": "不符合单次抑郁发作的严重度标准，但病程迁延、影响功能"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SYMPTOM",
+      "target": "精力减退或疲乏"
+    },
+    {
+      "source": "轻度抑郁发作",
+      "type": "ASSOCIATED_WITH",
+      "target": "功能轻度受损"
+    },
+    {
+      "source": "重度抑郁发作",
+      "type": "CAN_ACCOMPANY",
+      "target": "精神病性症状"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SYMPTOM",
+      "target": "注意力减退或犹豫不决"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SYMPTOM",
+      "target": "睡眠障碍"
+    },
+    {
+      "source": "中度抑郁发作",
+      "type": "ASSOCIATED_WITH",
+      "target": "功能中度受损"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "EXCLUDED_BY",
+      "target": "精神分裂症"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SYMPTOM",
+      "target": "兴趣或快感减退"
+    },
+    {
+      "source": "恶劣心境",
+      "type": "HAS_SYMPTOM",
+      "target": "抑郁心境"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SYMPTOM",
+      "target": "对未来的无望感"
+    },
+    {
+      "source": "重度抑郁发作",
+      "type": "REQUIRES",
+      "target": "核心症状=3条"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SEVERITY",
+      "target": "轻度抑郁发作"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SEVERITY",
+      "target": "中度抑郁发作"
+    },
+    {
+      "source": "中度抑郁发作",
+      "type": "REQUIRES",
+      "target": "核心症状≥2条"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SYMPTOM",
+      "target": "抑郁心境"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "EXCLUDED_BY",
+      "target": "躯体疾病"
+    },
+    {
+      "source": "恶劣心境",
+      "type": "REQUIRES",
+      "target": "持续时间≥2年"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SYMPTOM",
+      "target": "食欲改变"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "EXCLUDED_BY",
+      "target": "物质使用"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SEVERITY",
+      "target": "重度抑郁发作"
+    },
+    {
+      "source": "恶劣心境",
+      "type": "CHARACTERIZED_BY",
+      "target": "症状较轻但慢性化"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "EXCLUDED_BY",
+      "target": "轻躁狂发作"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "EXCLUDED_BY",
+      "target": "躁狂发作"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SYMPTOM",
+      "target": "精神运动性激越或迟滞"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "EXCLUDED_BY",
+      "target": "双相障碍"
+    },
+    {
+      "source": "轻度抑郁发作",
+      "type": "REQUIRES",
+      "target": "核心症状≥2条"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SYMPTOM",
+      "target": "自杀观念或行为"
+    },
+    {
+      "source": "轻度抑郁发作",
+      "type": "REQUIRES",
+      "target": "附加症状≥2条"
+    },
+    {
+      "source": "中度抑郁发作",
+      "type": "REQUIRES",
+      "target": "附加症状≥3-4条"
+    },
+    {
+      "source": "复发性抑郁障碍",
+      "type": "REQUIRES",
+      "target": "间歇期≥2个月无明显症状"
+    },
+    {
+      "source": "重度抑郁发作",
+      "type": "ASSOCIATED_WITH",
+      "target": "功能严重受损"
+    },
+    {
+      "source": "抑郁发作",
+      "type": "HAS_SYMPTOM",
+      "target": "自我评价低或自责自罪"
+    },
+    {
+      "source": "复发性抑郁障碍",
+      "type": "HAS_EPISODE",
+      "target": "抑郁发作"
+    },
+    {
+      "source": "重度抑郁发作",
+      "type": "REQUIRES",
+      "target": "附加症状≥5条"
+    }
+  ]
+}

@@ -1,0 +1,409 @@
+{
+  "nodes": [
+    {
+      "id": "精神分裂症",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "ICD11_Code",
+          "value": "6A20"
+        },
+        {
+          "key": "Duration_Requirement",
+          "value": "≥1 month"
+        },
+        {
+          "key": "Minimum_Symptom_Count",
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "id": "持续性幻觉",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "持续性妄想",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "思维紊乱",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "被动体验",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "阴性症状",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "行为紊乱",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "幻听",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "议论性幻听",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "命令性幻听",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "关系妄想",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "被害妄想",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "被控制感",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "言语离题",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "言语破裂",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "言语不连贯",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "思维被插入",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "思维被广播",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "思维被抽出",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "思维被控制",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "情感淡漠",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "意志减退",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "社交退缩",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "言语贫乏",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "紧张症",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "不适当的情绪反应",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "物质使用",
+      "label": "Condition",
+      "properties": [
+        {
+          "key": "exclusion_reason",
+          "value": "不能由其引起"
+        }
+      ]
+    },
+    {
+      "id": "躯体疾病",
+      "label": "Condition",
+      "properties": [
+        {
+          "key": "exclusion_reason",
+          "value": "不能由其引起"
+        }
+      ]
+    },
+    {
+      "id": "双相障碍",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "exclusion_context",
+          "value": "伴精神病性症状时需鉴别"
+        }
+      ]
+    },
+    {
+      "id": "抑郁障碍",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "exclusion_context",
+          "value": "伴精神病性症状时需鉴别"
+        }
+      ]
+    },
+    {
+      "id": "双相躁狂",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "differentiation_point",
+          "value": "情感症状不占主导，病程中大部分时间为精神病性症状"
+        }
+      ]
+    },
+    {
+      "id": "药物所致精神障碍",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "differentiation_point",
+          "value": "时间关联性和停药后缓解"
+        }
+      ]
+    },
+    {
+      "id": "6A20.0",
+      "label": "ClinicalSubtype",
+      "properties": [
+        {
+          "key": "name",
+          "value": "首次发作"
+        }
+      ]
+    },
+    {
+      "id": "6A20.1",
+      "label": "ClinicalSubtype",
+      "properties": [
+        {
+          "key": "name",
+          "value": "多次发作"
+        }
+      ]
+    },
+    {
+      "id": "6A20.2",
+      "label": "ClinicalSubtype",
+      "properties": [
+        {
+          "key": "name",
+          "value": "持续型"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "精神分裂症",
+      "type": "HAS_SUBTYPE",
+      "target": "6A20.2"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_SUBTYPE",
+      "target": "6A20.0"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_SYMPTOM",
+      "target": "被动体验"
+    },
+    {
+      "source": "幻听",
+      "type": "SUBTYPE_OF",
+      "target": "命令性幻听"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_SYMPTOM",
+      "target": "行为紊乱"
+    },
+    {
+      "source": "幻听",
+      "type": "SUBTYPE_OF",
+      "target": "议论性幻听"
+    },
+    {
+      "source": "思维紊乱",
+      "type": "SUBTYPE_OF",
+      "target": "言语不连贯"
+    },
+    {
+      "source": "阴性症状",
+      "type": "SUBTYPE_OF",
+      "target": "意志减退"
+    },
+    {
+      "source": "持续性妄想",
+      "type": "SUBTYPE_OF",
+      "target": "被害妄想"
+    },
+    {
+      "source": "被动体验",
+      "type": "SUBTYPE_OF",
+      "target": "思维被插入"
+    },
+    {
+      "source": "阴性症状",
+      "type": "SUBTYPE_OF",
+      "target": "社交退缩"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_SUBTYPE",
+      "target": "6A20.1"
+    },
+    {
+      "source": "被动体验",
+      "type": "SUBTYPE_OF",
+      "target": "思维被控制"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "DIFFERENTIATED_FROM",
+      "target": "药物所致精神障碍"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_SYMPTOM",
+      "target": "持续性幻觉"
+    },
+    {
+      "source": "思维紊乱",
+      "type": "SUBTYPE_OF",
+      "target": "言语离题"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_SYMPTOM",
+      "target": "持续性妄想"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "DIFFERENTIATED_FROM",
+      "target": "双相躁狂"
+    },
+    {
+      "source": "被动体验",
+      "type": "SUBTYPE_OF",
+      "target": "思维被抽出"
+    },
+    {
+      "source": "阴性症状",
+      "type": "SUBTYPE_OF",
+      "target": "言语贫乏"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_SYMPTOM",
+      "target": "思维紊乱"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "EXCLUDED_BY",
+      "target": "物质使用"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "HAS_SYMPTOM",
+      "target": "阴性症状"
+    },
+    {
+      "source": "阴性症状",
+      "type": "SUBTYPE_OF",
+      "target": "情感淡漠"
+    },
+    {
+      "source": "被动体验",
+      "type": "SUBTYPE_OF",
+      "target": "思维被广播"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "EXCLUDED_BY",
+      "target": "躯体疾病"
+    },
+    {
+      "source": "持续性幻觉",
+      "type": "SUBTYPE_OF",
+      "target": "幻听"
+    },
+    {
+      "source": "行为紊乱",
+      "type": "SUBTYPE_OF",
+      "target": "不适当的情绪反应"
+    },
+    {
+      "source": "持续性妄想",
+      "type": "SUBTYPE_OF",
+      "target": "关系妄想"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "DIFFERENTIATED_FROM",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "持续性妄想",
+      "type": "SUBTYPE_OF",
+      "target": "被控制感"
+    },
+    {
+      "source": "思维紊乱",
+      "type": "SUBTYPE_OF",
+      "target": "言语破裂"
+    },
+    {
+      "source": "精神分裂症",
+      "type": "DIFFERENTIATED_FROM",
+      "target": "双相障碍"
+    },
+    {
+      "source": "行为紊乱",
+      "type": "SUBTYPE_OF",
+      "target": "紧张症"
+    }
+  ]
+}

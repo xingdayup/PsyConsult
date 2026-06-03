@@ -1,0 +1,2176 @@
+{
+  "nodes": [
+    {
+      "id": "舍曲林",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "舍曲林"
+        },
+        {
+          "key": "generic_name",
+          "value": "Sertraline"
+        },
+        {
+          "key": "category",
+          "value": "SSRI"
+        },
+        {
+          "key": "dose_start",
+          "value": "50mg/d"
+        },
+        {
+          "key": "dose_max",
+          "value": "200mg/d"
+        },
+        {
+          "key": "dose_range",
+          "value": "100-200mg/d"
+        }
+      ]
+    },
+    {
+      "id": "帕罗西汀",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "帕罗西汀"
+        },
+        {
+          "key": "generic_name",
+          "value": "Paroxetine"
+        },
+        {
+          "key": "category",
+          "value": "SSRI"
+        },
+        {
+          "key": "dose_start",
+          "value": "20mg/d"
+        },
+        {
+          "key": "dose_max",
+          "value": "50mg/d"
+        }
+      ]
+    },
+    {
+      "id": "氟西汀",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "氟西汀"
+        },
+        {
+          "key": "generic_name",
+          "value": "Fluoxetine"
+        },
+        {
+          "key": "category",
+          "value": "SSRI"
+        },
+        {
+          "key": "dose_start",
+          "value": "20mg/d"
+        },
+        {
+          "key": "dose_max",
+          "value": "80mg/d"
+        }
+      ]
+    },
+    {
+      "id": "文拉法辛",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "文拉法辛"
+        },
+        {
+          "key": "generic_name",
+          "value": "Venlafaxine"
+        },
+        {
+          "key": "category",
+          "value": "SNRI"
+        },
+        {
+          "key": "dose_start",
+          "value": "75mg/d"
+        },
+        {
+          "key": "dose_max",
+          "value": "225mg/d"
+        }
+      ]
+    },
+    {
+      "id": "度洛西汀",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "度洛西汀"
+        },
+        {
+          "key": "generic_name",
+          "value": "Duloxetine"
+        },
+        {
+          "key": "category",
+          "value": "SNRI"
+        },
+        {
+          "key": "dose_start",
+          "value": "30-60mg/d"
+        },
+        {
+          "key": "dose_max",
+          "value": "120mg/d"
+        }
+      ]
+    },
+    {
+      "id": "奥氮平",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "奥氮平"
+        },
+        {
+          "key": "generic_name",
+          "value": "Olanzapine"
+        },
+        {
+          "key": "category",
+          "value": "非典型抗精神病药"
+        },
+        {
+          "key": "dose_start",
+          "value": "5-10mg/d"
+        },
+        {
+          "key": "dose_max",
+          "value": "20mg/d"
+        }
+      ]
+    },
+    {
+      "id": "利培酮",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "利培酮"
+        },
+        {
+          "key": "generic_name",
+          "value": "Risperidone"
+        },
+        {
+          "key": "category",
+          "value": "非典型抗精神病药"
+        },
+        {
+          "key": "dose_start",
+          "value": "1-2mg/d"
+        },
+        {
+          "key": "dose_max",
+          "value": "6mg/d"
+        }
+      ]
+    },
+    {
+      "id": "锂盐",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "锂盐"
+        },
+        {
+          "key": "generic_name",
+          "value": "Lithium"
+        },
+        {
+          "key": "category",
+          "value": "心境稳定剂"
+        },
+        {
+          "key": "dose_start",
+          "value": "300-600mg/d"
+        },
+        {
+          "key": "therapeutic_range",
+          "value": "0.6-1.2 mmol/L"
+        }
+      ]
+    },
+    {
+      "id": "丙戊酸钠",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "丙戊酸钠"
+        },
+        {
+          "key": "generic_name",
+          "value": "Valproate"
+        },
+        {
+          "key": "category",
+          "value": "心境稳定剂/抗癫痫药"
+        },
+        {
+          "key": "dose_start",
+          "value": "500-750mg/d"
+        },
+        {
+          "key": "therapeutic_range",
+          "value": "50-100 μg/mL"
+        }
+      ]
+    },
+    {
+      "id": "SSRI",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "name",
+          "value": "选择性5-羟色胺再摄取抑制剂"
+        }
+      ]
+    },
+    {
+      "id": "SNRI",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "name",
+          "value": "5-羟色胺和去甲肾上腺素再摄取抑制剂"
+        }
+      ]
+    },
+    {
+      "id": "非典型抗精神病药",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "name",
+          "value": "非典型抗精神病药"
+        }
+      ]
+    },
+    {
+      "id": "心境稳定剂",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "name",
+          "value": "心境稳定剂"
+        }
+      ]
+    },
+    {
+      "id": "抗癫痫药",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "name",
+          "value": "抗癫痫药"
+        }
+      ]
+    },
+    {
+      "id": "抑郁障碍",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "F32/F33"
+        },
+        {
+          "key": "name",
+          "value": "抑郁障碍"
+        }
+      ]
+    },
+    {
+      "id": "强迫症",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "F42"
+        },
+        {
+          "key": "name",
+          "value": "强迫症"
+        }
+      ]
+    },
+    {
+      "id": "惊恐障碍",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "F41.0"
+        }
+      ]
+    },
+    {
+      "id": "社交焦虑障碍",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "F40.1"
+        },
+        {
+          "key": "name",
+          "value": "社交焦虑障碍"
+        }
+      ]
+    },
+    {
+      "id": "创伤后应激障碍",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "F43.1"
+        }
+      ]
+    },
+    {
+      "id": "广泛性焦虑障碍",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "F41.1"
+        }
+      ]
+    },
+    {
+      "id": "神经性贪食",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "F50.2"
+        }
+      ]
+    },
+    {
+      "id": "精神分裂症",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "F20"
+        },
+        {
+          "key": "name",
+          "value": "精神分裂症"
+        }
+      ]
+    },
+    {
+      "id": "双相躁狂发作",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "F31.1"
+        },
+        {
+          "key": "name",
+          "value": "双相躁狂发作"
+        }
+      ]
+    },
+    {
+      "id": "双相障碍维持治疗",
+      "label": "Treatment",
+      "properties": [
+        {
+          "key": "purpose",
+          "value": "预防复发"
+        },
+        {
+          "key": "name",
+          "value": "双相障碍维持治疗"
+        }
+      ]
+    },
+    {
+      "id": "糖尿病神经病变疼痛",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "associated_with",
+          "value": "糖尿病"
+        }
+      ]
+    },
+    {
+      "id": "恶心",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "恶心"
+        }
+      ]
+    },
+    {
+      "id": "腹泻",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "失眠",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "失眠"
+        }
+      ]
+    },
+    {
+      "id": "性功能障碍",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "延迟射精",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "性欲减退",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "嗜睡",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "嗜睡"
+        }
+      ]
+    },
+    {
+      "id": "体重增加",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "体重增加"
+        }
+      ]
+    },
+    {
+      "id": "撤药综合征",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "眩晕",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "感觉异常",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "焦虑",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "食欲减退",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "血压升高",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "口干",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "口干"
+        }
+      ]
+    },
+    {
+      "id": "震颤",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "多尿",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "甲状腺功能减退",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "E03.9"
+        }
+      ]
+    },
+    {
+      "id": "脱发",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "肝功能异常",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "多囊卵巢综合征",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "E28.2"
+        }
+      ]
+    },
+    {
+      "id": "锥体外系反应",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "EPS",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "abbreviation",
+          "value": "Extrapyramidal Symptoms"
+        }
+      ]
+    },
+    {
+      "id": "高催乳素血症",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "E22.1"
+        }
+      ]
+    },
+    {
+      "id": "血糖升高",
+      "label": "Symptom",
+      "properties": []
+    },
+    {
+      "id": "血脂异常",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "E78.5"
+        }
+      ]
+    },
+    {
+      "id": "MAOIs",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "name",
+          "value": "单胺氧化酶抑制剂"
+        }
+      ]
+    },
+    {
+      "id": "其他SSRI",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "name",
+          "value": "其他选择性5-羟色胺再摄取抑制剂"
+        }
+      ]
+    },
+    {
+      "id": "NSAIDs",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "name",
+          "value": "非甾体抗炎药"
+        }
+      ]
+    },
+    {
+      "id": "华法林",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "generic_name",
+          "value": "Warfarin"
+        }
+      ]
+    },
+    {
+      "id": "三环类抗抑郁药",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "name",
+          "value": "三环类抗抑郁药"
+        }
+      ]
+    },
+    {
+      "id": "CYP2D6抑制",
+      "label": "PharmacokineticEffect",
+      "properties": [
+        {
+          "key": "mechanism",
+          "value": "代谢酶抑制"
+        }
+      ]
+    },
+    {
+      "id": "含血清素药物",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "description",
+          "value": "具有血清素能活性的药物（如SSRIs、SNRIs、曲马多等）"
+        }
+      ]
+    },
+    {
+      "id": "5-HT综合征",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "T43.6"
+        },
+        {
+          "key": "name",
+          "value": "5-HT综合征"
+        }
+      ]
+    },
+    {
+      "id": "未控制的高血压",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "I10"
+        }
+      ]
+    },
+    {
+      "id": "肝功能不全",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "K76.0"
+        }
+      ]
+    },
+    {
+      "id": "严重肾功能不全",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "N18.4"
+        }
+      ]
+    },
+    {
+      "id": "低钠血症",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "E87.1"
+        }
+      ]
+    },
+    {
+      "id": "噻嗪类利尿剂",
+      "label": "DrugClass",
+      "properties": [
+        {
+          "key": "name",
+          "value": "噻嗪类利尿剂"
+        }
+      ]
+    },
+    {
+      "id": "拉莫三嗪",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "generic_name",
+          "value": "Lamotrigine"
+        },
+        {
+          "key": "name",
+          "value": "拉莫三嗪"
+        }
+      ]
+    },
+    {
+      "id": "血药浓度升高",
+      "label": "PharmacokineticEffect",
+      "properties": [
+        {
+          "key": "effect",
+          "value": "血药浓度升高"
+        }
+      ]
+    },
+    {
+      "id": "血锂浓度升高",
+      "label": "PharmacokineticEffect",
+      "properties": [
+        {
+          "key": "effect",
+          "value": "血锂浓度升高"
+        }
+      ]
+    },
+    {
+      "id": "血锂浓度显著升高",
+      "label": "PharmacokineticEffect",
+      "properties": [
+        {
+          "key": "effect",
+          "value": "血锂浓度显著升高"
+        }
+      ]
+    },
+    {
+      "id": "协同增效",
+      "label": "TherapeuticEffect",
+      "properties": [
+        {
+          "key": "description",
+          "value": "联合用药产生大于单药效应之和的效果"
+        }
+      ]
+    },
+    {
+      "id": "神经毒性",
+      "label": "SideEffect",
+      "properties": [
+        {
+          "key": "description",
+          "value": "中枢神经系统毒性，如意识模糊、共济失调、抽搐"
+        }
+      ]
+    },
+    {
+      "id": "抗凝作用增强",
+      "label": "PharmacodynamicEffect",
+      "properties": [
+        {
+          "key": "effect",
+          "value": "增强抗凝作用"
+        }
+      ]
+    },
+    {
+      "id": "消化道出血",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "icd10",
+          "value": "K92.2"
+        }
+      ]
+    },
+    {
+      "id": "肝功能监测",
+      "label": "Monitoring",
+      "properties": [
+        {
+          "key": "procedure",
+          "value": "定期检测ALT/AST/GGT及胆红素"
+        }
+      ]
+    },
+    {
+      "id": "14天洗脱期",
+      "label": "WashoutPeriod",
+      "properties": [
+        {
+          "key": "duration",
+          "value": "14 days"
+        }
+      ]
+    },
+    {
+      "id": "5周洗脱期",
+      "label": "WashoutPeriod",
+      "properties": [
+        {
+          "key": "duration",
+          "value": "5 weeks"
+        }
+      ]
+    },
+    {
+      "id": "双相障碍抑郁发作",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "name",
+          "value": "双相障碍抑郁发作"
+        }
+      ]
+    },
+    {
+      "id": "皮疹",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "皮疹"
+        }
+      ]
+    },
+    {
+      "id": "Stevens-Johnson综合征",
+      "label": "SideEffect",
+      "properties": [
+        {
+          "key": "name",
+          "value": "Stevens-Johnson综合征"
+        }
+      ]
+    },
+    {
+      "id": "头痛",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "头痛"
+        }
+      ]
+    },
+    {
+      "id": "拉莫三嗪过敏",
+      "label": "Contraindication",
+      "properties": [
+        {
+          "key": "name",
+          "value": "对拉莫三嗪过敏"
+        }
+      ]
+    },
+    {
+      "id": "喹硫平",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "喹硫平"
+        },
+        {
+          "key": "generic_name",
+          "value": "Quetiapine"
+        }
+      ]
+    },
+    {
+      "id": "双相抑郁发作",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "name",
+          "value": "双相抑郁发作"
+        }
+      ]
+    },
+    {
+      "id": "难治性抑郁增效治疗",
+      "label": "Treatment",
+      "properties": [
+        {
+          "key": "name",
+          "value": "难治性抑郁增效治疗"
+        }
+      ]
+    },
+    {
+      "id": "头晕",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "头晕"
+        }
+      ]
+    },
+    {
+      "id": "体位性低血压",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "体位性低血压"
+        }
+      ]
+    },
+    {
+      "id": "未纠正的低钾血症",
+      "label": "Contraindication",
+      "properties": [
+        {
+          "key": "name",
+          "value": "未纠正的低钾血症"
+        }
+      ]
+    },
+    {
+      "id": "未纠正的低镁血症",
+      "label": "Contraindication",
+      "properties": [
+        {
+          "key": "name",
+          "value": "未纠正的低镁血症"
+        }
+      ]
+    },
+    {
+      "id": "阿立哌唑",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "阿立哌唑"
+        },
+        {
+          "key": "generic_name",
+          "value": "Aripiprazole"
+        }
+      ]
+    },
+    {
+      "id": "多巴胺部分激动剂",
+      "label": "PharmacologicalMechanism",
+      "properties": [
+        {
+          "key": "name",
+          "value": "多巴胺部分激动剂"
+        }
+      ]
+    },
+    {
+      "id": "静坐不能",
+      "label": "SideEffect",
+      "properties": [
+        {
+          "key": "name",
+          "value": "静坐不能"
+        }
+      ]
+    },
+    {
+      "id": "阿立哌唑过敏",
+      "label": "Contraindication",
+      "properties": [
+        {
+          "key": "name",
+          "value": "对阿立哌唑过敏"
+        }
+      ]
+    },
+    {
+      "id": "氯氮平",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "氯氮平"
+        },
+        {
+          "key": "generic_name",
+          "value": "Clozapine"
+        }
+      ]
+    },
+    {
+      "id": "难治性精神分裂症",
+      "label": "Disease",
+      "properties": [
+        {
+          "key": "name",
+          "value": "难治性精神分裂症"
+        },
+        {
+          "key": "definition",
+          "value": "至少2种抗精神病药足量足疗程治疗无效"
+        }
+      ]
+    },
+    {
+      "id": "粒细胞缺乏症",
+      "label": "SideEffect",
+      "properties": [
+        {
+          "key": "name",
+          "value": "粒细胞缺乏症"
+        }
+      ]
+    },
+    {
+      "id": "流涎",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "流涎"
+        }
+      ]
+    },
+    {
+      "id": "心肌炎",
+      "label": "SideEffect",
+      "properties": [
+        {
+          "key": "name",
+          "value": "心肌炎"
+        }
+      ]
+    },
+    {
+      "id": "癫痫发作",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "癫痫发作"
+        }
+      ]
+    },
+    {
+      "id": "粒细胞缺乏症史",
+      "label": "Contraindication",
+      "properties": [
+        {
+          "key": "name",
+          "value": "粒细胞缺乏症史"
+        }
+      ]
+    },
+    {
+      "id": "未控制的癫痫",
+      "label": "Contraindication",
+      "properties": [
+        {
+          "key": "name",
+          "value": "未控制的癫痫"
+        }
+      ]
+    },
+    {
+      "id": "严重心脏疾病",
+      "label": "Contraindication",
+      "properties": [
+        {
+          "key": "name",
+          "value": "严重心脏疾病"
+        }
+      ]
+    },
+    {
+      "id": "氟伏沙明",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "氟伏沙明"
+        },
+        {
+          "key": "generic_name",
+          "value": "Fluvoxamine"
+        }
+      ]
+    },
+    {
+      "id": "乏力",
+      "label": "Symptom",
+      "properties": [
+        {
+          "key": "name",
+          "value": "乏力"
+        }
+      ]
+    },
+    {
+      "id": "替扎尼定",
+      "label": "Drug",
+      "properties": [
+        {
+          "key": "name",
+          "value": "替扎尼定"
+        }
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "source": "氟西汀",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "性功能障碍"
+    },
+    {
+      "source": "氯氮平",
+      "type": "CAUSES",
+      "target": "心肌炎"
+    },
+    {
+      "source": "撤药综合征",
+      "type": "INCLUDES",
+      "target": "眩晕"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "INHIBITS_METABOLISM_OF",
+      "target": "CYP2D6抑制"
+    },
+    {
+      "source": "氯氮平",
+      "type": "INTERACTS_WITH",
+      "target": "舍曲林"
+    },
+    {
+      "source": "锂盐",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "震颤"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "多囊卵巢综合征"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "TREATS",
+      "target": "广泛性焦虑障碍"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "失眠"
+    },
+    {
+      "source": "利培酮",
+      "type": "HAS_CATEGORY",
+      "target": "非典型抗精神病药"
+    },
+    {
+      "source": "奥氮平",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "血糖升高"
+    },
+    {
+      "source": "锂盐",
+      "type": "HAS_SYNERGISTIC_EFFECT_WITH",
+      "target": "协同增效"
+    },
+    {
+      "source": "舍曲林",
+      "type": "CONTRAINDICATED_WITH",
+      "target": "MAOIs"
+    },
+    {
+      "source": "锂盐",
+      "type": "INTERACTS_WITH",
+      "target": "奥氮平"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "CONTRAINDICATED_WITH",
+      "target": "舍曲林"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "CAUSES",
+      "target": "失眠"
+    },
+    {
+      "source": "氟西汀",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "失眠"
+    },
+    {
+      "source": "喹硫平",
+      "type": "CONTRAINDICATED_IN",
+      "target": "未纠正的低钾血症"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "HAS_CATEGORY",
+      "target": "SNRI"
+    },
+    {
+      "source": "舍曲林",
+      "type": "CAN_BE_USED_WITH_FOR_DIFFICULT_TO_TREAT_DEPRESSION",
+      "target": "喹硫平"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "CAUSES",
+      "target": "恶心"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "TREATS",
+      "target": "双相障碍维持治疗"
+    },
+    {
+      "source": "锂盐",
+      "type": "CAUSES_INCREASED_CONCENTRATION_OF",
+      "target": "血锂浓度升高"
+    },
+    {
+      "source": "其他SSRI",
+      "type": "CONTRAINDICATED_DUE_TO_SEROTONIN_SYNDROME_RISK",
+      "target": "氟伏沙明"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "血压升高"
+    },
+    {
+      "source": "舍曲林",
+      "type": "TREATS",
+      "target": "创伤后应激障碍"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "CAUSES",
+      "target": "头痛"
+    },
+    {
+      "source": "锂盐",
+      "type": "CONTRAINDICATED_IN",
+      "target": "低钠血症"
+    },
+    {
+      "source": "喹硫平",
+      "type": "CAUSES",
+      "target": "口干"
+    },
+    {
+      "source": "舍曲林",
+      "type": "CONTRAINDICATED_WITH",
+      "target": "其他SSRI"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "TREATS",
+      "target": "广泛性焦虑障碍"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "CAUSES",
+      "target": "皮疹"
+    },
+    {
+      "source": "舍曲林",
+      "type": "TREATS",
+      "target": "社交焦虑障碍"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "INTERACTS_WITH",
+      "target": "丙戊酸钠"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "CONTRAINDICATED_IN",
+      "target": "阿立哌唑过敏"
+    },
+    {
+      "source": "锂盐",
+      "type": "INTERACTS_WITH",
+      "target": "舍曲林"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "TREATS",
+      "target": "社交焦虑障碍"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "INTERACTS_WITH",
+      "target": "三环类抗抑郁药"
+    },
+    {
+      "source": "利培酮",
+      "type": "CAUSES_INCREASED_CONCENTRATION_OF",
+      "target": "血药浓度升高"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "CAUSES",
+      "target": "乏力"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "CONTRAINDICATED_IN",
+      "target": "未控制的高血压"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "CAUSES",
+      "target": "头痛"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "TREATS",
+      "target": "双相躁狂发作"
+    },
+    {
+      "source": "舍曲林",
+      "type": "TREATS",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "体重增加"
+    },
+    {
+      "source": "利培酮",
+      "type": "INTERACTS_WITH",
+      "target": "舍曲林"
+    },
+    {
+      "source": "舍曲林",
+      "type": "NO_SIGNIFICANT_INTERACTION_WITH",
+      "target": "拉莫三嗪"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "INTERACTS_WITH",
+      "target": "舍曲林"
+    },
+    {
+      "source": "氟西汀",
+      "type": "REQUIRES_WASHOUT_PERIOD",
+      "target": "5周洗脱期"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "INCREASES_CONCENTRATION_OF",
+      "target": "拉莫三嗪"
+    },
+    {
+      "source": "度洛西汀",
+      "type": "TREATS",
+      "target": "广泛性焦虑障碍"
+    },
+    {
+      "source": "度洛西汀",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "口干"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "INCREASES_RISK_OF",
+      "target": "镇静作用"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "TREATS",
+      "target": "双相障碍抑郁发作"
+    },
+    {
+      "source": "氯氮平",
+      "type": "TREATS",
+      "target": "难治性精神分裂症"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "INTERACTS_WITH",
+      "target": "阿立哌唑"
+    },
+    {
+      "source": "度洛西汀",
+      "type": "TREATS",
+      "target": "糖尿病神经病变疼痛"
+    },
+    {
+      "source": "氟西汀",
+      "type": "TREATS",
+      "target": "强迫症"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "INTERACTS_WITH",
+      "target": "氯氮平"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "体重增加"
+    },
+    {
+      "source": "喹硫平",
+      "type": "HAS_CATEGORY",
+      "target": "非典型抗精神病药"
+    },
+    {
+      "source": "奥氮平",
+      "type": "NO_CLINICAL_CONTRAINDICATION_BUT_MONITOR_METABOLIC_SIDE_EFFECTS",
+      "target": "喹硫平"
+    },
+    {
+      "source": "奥氮平",
+      "type": "NO_CLINICAL_RATIONALE_FOR_COMBINATION",
+      "target": "阿立哌唑"
+    },
+    {
+      "source": "利培酮",
+      "type": "TREATS",
+      "target": "精神分裂症"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "INCREASES_CONCENTRATION_OF",
+      "target": "氟伏沙明"
+    },
+    {
+      "source": "舍曲林",
+      "type": "INCREASES_CONCENTRATION_OF",
+      "target": "阿立哌唑"
+    },
+    {
+      "source": "喹硫平",
+      "type": "TREATS",
+      "target": "精神分裂症"
+    },
+    {
+      "source": "舍曲林",
+      "type": "INCREASES_CONCENTRATION_OF",
+      "target": "氯氮平"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "CONTRAINDICATED_IN",
+      "target": "育龄女性"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "撤药综合征"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "HAS_CATEGORY",
+      "target": "抗癫痫药"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "CAUSES",
+      "target": "口干"
+    },
+    {
+      "source": "氟西汀",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "食欲减退"
+    },
+    {
+      "source": "利培酮",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "锥体外系反应"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "HAS_CATEGORY",
+      "target": "心境稳定剂"
+    },
+    {
+      "source": "舍曲林",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "性功能障碍"
+    },
+    {
+      "source": "喹硫平",
+      "type": "CAUSES",
+      "target": "嗜睡"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "CAUSES",
+      "target": "静坐不能"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "CAUSES_INCREASED_CONCENTRATION_OF",
+      "target": "拉莫三嗪血药浓度升高"
+    },
+    {
+      "source": "氟西汀",
+      "type": "TREATS",
+      "target": "神经性贪食"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "INTERACTS_WITH",
+      "target": "舍曲林"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "HAS_CATEGORY",
+      "target": "SSRI"
+    },
+    {
+      "source": "舍曲林",
+      "type": "INCREASES_RISK_OF",
+      "target": "5-HT综合征"
+    },
+    {
+      "source": "利培酮",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "体重增加"
+    },
+    {
+      "source": "舍曲林",
+      "type": "TREATS",
+      "target": "惊恐障碍"
+    },
+    {
+      "source": "喹硫平",
+      "type": "INTERACTS_WITH",
+      "target": "锂盐"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "CONTRAINDICATED_WITH",
+      "target": "MAOIs"
+    },
+    {
+      "source": "奥氮平",
+      "type": "INCREASES_RISK_OF",
+      "target": "EPS风险叠加"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "CONTRAINDICATED_WITH",
+      "target": "替扎尼定"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "性功能障碍"
+    },
+    {
+      "source": "度洛西汀",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "恶心"
+    },
+    {
+      "source": "性功能障碍",
+      "type": "INCLUDES",
+      "target": "延迟射精"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "REQUIRES_MONITORING_OF",
+      "target": "肝功能监测"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "TREATS",
+      "target": "精神分裂症"
+    },
+    {
+      "source": "舍曲林",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "失眠"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "HAS_CATEGORY",
+      "target": "非典型抗精神病药"
+    },
+    {
+      "source": "氯氮平",
+      "type": "CONTRAINDICATED_IN",
+      "target": "未控制的癫痫"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "CONTRAINDICATED_WITH",
+      "target": "MAOIs"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "恶心"
+    },
+    {
+      "source": "氯氮平",
+      "type": "CAUSES",
+      "target": "癫痫发作"
+    },
+    {
+      "source": "锂盐",
+      "type": "CAN_BE_USED_WITH_FOR_MANIA_WITH_CAUTION",
+      "target": "喹硫平"
+    },
+    {
+      "source": "氟西汀",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "焦虑"
+    },
+    {
+      "source": "氟西汀",
+      "type": "CONTRAINDICATED_WITH",
+      "target": "MAOIs"
+    },
+    {
+      "source": "锂盐",
+      "type": "TREATS",
+      "target": "双相障碍维持治疗"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "CAUSES",
+      "target": "恶心"
+    },
+    {
+      "source": "奥氮平",
+      "type": "CAUSES_INCREASED_CONCENTRATION_OF",
+      "target": "血药浓度升高"
+    },
+    {
+      "source": "锂盐",
+      "type": "TREATS",
+      "target": "双相障碍躁狂发作"
+    },
+    {
+      "source": "喹硫平",
+      "type": "INTERACTS_WITH",
+      "target": "舍曲林"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "INTERACTS_WITH",
+      "target": "奥氮平"
+    },
+    {
+      "source": "锂盐",
+      "type": "INCREASES_RISK_OF",
+      "target": "神经毒性"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "肝功能异常"
+    },
+    {
+      "source": "氯氮平",
+      "type": "CAUSES",
+      "target": "体重增加"
+    },
+    {
+      "source": "喹硫平",
+      "type": "CONTRAINDICATED_IN",
+      "target": "未纠正的低镁血症"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "CAUSES",
+      "target": "嗜睡"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "TREATS",
+      "target": "双相障碍维持治疗"
+    },
+    {
+      "source": "喹硫平",
+      "type": "TREATS",
+      "target": "双相抑郁发作"
+    },
+    {
+      "source": "度洛西汀",
+      "type": "HAS_CATEGORY",
+      "target": "SNRI"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "TREATS",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "撤药综合征",
+      "type": "INCLUDES",
+      "target": "感觉异常"
+    },
+    {
+      "source": "奥氮平",
+      "type": "HAS_CATEGORY",
+      "target": "非典型抗精神病药"
+    },
+    {
+      "source": "舍曲林",
+      "type": "INTERACTS_WITH",
+      "target": "华法林"
+    },
+    {
+      "source": "锂盐",
+      "type": "USED_FOR_ENHANCEMENT_WITH",
+      "target": "难治性抑郁增效治疗"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "TREATS",
+      "target": "社交焦虑障碍"
+    },
+    {
+      "source": "舍曲林",
+      "type": "POTENTIATES",
+      "target": "抗凝作用增强"
+    },
+    {
+      "source": "喹硫平",
+      "type": "CAUSES",
+      "target": "体位性低血压"
+    },
+    {
+      "source": "氯氮平",
+      "type": "CONTRAINDICATED_IN",
+      "target": "严重心脏疾病"
+    },
+    {
+      "source": "奥氮平",
+      "type": "TREATS",
+      "target": "精神分裂症"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "HAS_CATEGORY",
+      "target": "SSRI"
+    },
+    {
+      "source": "舍曲林",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "腹泻"
+    },
+    {
+      "source": "锂盐",
+      "type": "TREATS",
+      "target": "难治性抑郁增效治疗"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "CONTRAINDICATED_IN",
+      "target": "拉莫三嗪过敏"
+    },
+    {
+      "source": "锂盐",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "体重增加"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "CONTRAINDICATED_WITH",
+      "target": "MAOIs"
+    },
+    {
+      "source": "喹硫平",
+      "type": "CAUSES",
+      "target": "头晕"
+    },
+    {
+      "source": "喹硫平",
+      "type": "INTERACTS_WITH",
+      "target": "奥氮平"
+    },
+    {
+      "source": "奥氮平",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "体重增加"
+    },
+    {
+      "source": "氯氮平",
+      "type": "CAUSES",
+      "target": "流涎"
+    },
+    {
+      "source": "性功能障碍",
+      "type": "INCLUDES",
+      "target": "性欲减退"
+    },
+    {
+      "source": "利培酮",
+      "type": "TREATS",
+      "target": "双相躁狂发作"
+    },
+    {
+      "source": "氯氮平",
+      "type": "INTERACTS_WITH",
+      "target": "锂盐"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "TREATS",
+      "target": "社交焦虑障碍"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "脱发"
+    },
+    {
+      "source": "度洛西汀",
+      "type": "CONTRAINDICATED_IN",
+      "target": "肝功能不全"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "INTERACTS_WITH",
+      "target": "拉莫三嗪"
+    },
+    {
+      "source": "喹硫平",
+      "type": "TREATS",
+      "target": "双相躁狂发作"
+    },
+    {
+      "source": "喹硫平",
+      "type": "TREATS",
+      "target": "难治性抑郁增效治疗"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "CAUSES",
+      "target": "Stevens-Johnson综合征"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "INTERACTS_WITH",
+      "target": "含血清素药物"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "震颤"
+    },
+    {
+      "source": "锂盐",
+      "type": "INTERACTS_WITH",
+      "target": "噻嗪类利尿剂"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "HAS_SYNERGISTIC_EFFECT_WITH",
+      "target": "协同增效"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "撤药综合征"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "CAUSES",
+      "target": "失眠"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "TREATS",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "氟西汀",
+      "type": "HAS_CATEGORY",
+      "target": "SSRI"
+    },
+    {
+      "source": "锂盐",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "甲状腺功能减退"
+    },
+    {
+      "source": "奥氮平",
+      "type": "INTERACTS_WITH",
+      "target": "利培酮"
+    },
+    {
+      "source": "锂盐",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "多尿"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "TREATS",
+      "target": "难治性抑郁增效治疗"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "TREATS",
+      "target": "双相躁狂发作"
+    },
+    {
+      "source": "喹硫平",
+      "type": "CAUSES",
+      "target": "体重增加"
+    },
+    {
+      "source": "氯氮平",
+      "type": "CAUSES",
+      "target": "粒细胞缺乏症"
+    },
+    {
+      "source": "锂盐",
+      "type": "HAS_CATEGORY",
+      "target": "心境稳定剂"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "HAS_CHARACTERISTIC",
+      "target": "体重增加风险低"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "CONTRAINDICATED_IN",
+      "target": "肝功能严重受损"
+    },
+    {
+      "source": "奥氮平",
+      "type": "TREATS",
+      "target": "双相障碍维持治疗"
+    },
+    {
+      "source": "舍曲林",
+      "type": "INTERACTS_WITH",
+      "target": "NSAIDs"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "INTERACTS_WITH",
+      "target": "舍曲林"
+    },
+    {
+      "source": "奥氮平",
+      "type": "INTERACTS_WITH",
+      "target": "氟西汀"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "HAS_CATEGORY",
+      "target": "心境稳定剂"
+    },
+    {
+      "source": "舍曲林",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "恶心"
+    },
+    {
+      "source": "利培酮",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "高催乳素血症"
+    },
+    {
+      "source": "阿立哌唑",
+      "type": "HAS_MECHANISM",
+      "target": "多巴胺部分激动剂"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "INTERACTS_WITH",
+      "target": "其他SSRI"
+    },
+    {
+      "source": "舍曲林",
+      "type": "HAS_CATEGORY",
+      "target": "SSRI"
+    },
+    {
+      "source": "度洛西汀",
+      "type": "TREATS",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "氯氮平",
+      "type": "HAS_CATEGORY",
+      "target": "非典型抗精神病药"
+    },
+    {
+      "source": "氯氮平",
+      "type": "CAUSES",
+      "target": "嗜睡"
+    },
+    {
+      "source": "锂盐",
+      "type": "INTERACTS_WITH",
+      "target": "NSAIDs"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "TREATS",
+      "target": "惊恐障碍"
+    },
+    {
+      "source": "舍曲林",
+      "type": "CONTRAINDICATED_WITH",
+      "target": "SNRI"
+    },
+    {
+      "source": "锂盐",
+      "type": "CONTRAINDICATED_IN",
+      "target": "严重肾功能不全"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "HAS_CATEGORY",
+      "target": "抗癫痫药"
+    },
+    {
+      "source": "舍曲林",
+      "type": "TREATS",
+      "target": "强迫症"
+    },
+    {
+      "source": "舍曲林",
+      "type": "INCREASES_RISK_OF",
+      "target": "消化道出血"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "TREATS",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "锂盐",
+      "type": "INCREASES_NEUROTOXICITY_RISK",
+      "target": "氯氮平"
+    },
+    {
+      "source": "奥氮平",
+      "type": "NO_CLINICAL_INDICATION_FOR_COMBINATION",
+      "target": "氯氮平"
+    },
+    {
+      "source": "氯氮平",
+      "type": "CONTRAINDICATED_DUE_TO_CONCENTRATION_ELEVATION",
+      "target": "氟伏沙明"
+    },
+    {
+      "source": "帕罗西汀",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "嗜睡"
+    },
+    {
+      "source": "氯氮平",
+      "type": "INTERACTS_WITH",
+      "target": "奥氮平"
+    },
+    {
+      "source": "奥氮平",
+      "type": "TREATS",
+      "target": "双相躁狂发作"
+    },
+    {
+      "source": "氟伏沙明",
+      "type": "TREATS",
+      "target": "强迫症"
+    },
+    {
+      "source": "氟西汀",
+      "type": "TREATS",
+      "target": "抑郁障碍"
+    },
+    {
+      "source": "锂盐",
+      "type": "CAUSES_INCREASED_CONCENTRATION_OF",
+      "target": "血锂浓度显著升高"
+    },
+    {
+      "source": "舍曲林",
+      "type": "REQUIRES_WASHOUT_PERIOD",
+      "target": "14天洗脱期"
+    },
+    {
+      "source": "丙戊酸钠",
+      "type": "INTERACTS_WITH",
+      "target": "奥氮平"
+    },
+    {
+      "source": "奥氮平",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "血脂异常"
+    },
+    {
+      "source": "氯氮平",
+      "type": "CONTRAINDICATED_IN",
+      "target": "粒细胞缺乏症史"
+    },
+    {
+      "source": "奥氮平",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "嗜睡"
+    },
+    {
+      "source": "锥体外系反应",
+      "type": "ALSO_KNOWN_AS",
+      "target": "EPS"
+    },
+    {
+      "source": "文拉法辛",
+      "type": "INCREASES_RISK_OF",
+      "target": "5-HT综合征"
+    },
+    {
+      "source": "度洛西汀",
+      "type": "HAS_SIDE_EFFECT",
+      "target": "失眠"
+    },
+    {
+      "source": "拉莫三嗪",
+      "type": "CAUSES",
+      "target": "恶心"
+    }
+  ]
+}
