@@ -107,10 +107,23 @@ async def stream_chat(query: str, user_id: str, session_id: str):
                 "metadata": {}
             }
             config = {"configurable": {"user_id": user_id}}
-            result = await asyncio.to_thread(asyncio.run, graph.ainvoke(state, config=config)) if not asyncio.iscoroutinefunction(graph.ainvoke) else await graph.ainvoke(state, config=config)
+
+            # 逐 Agent 流式推送
+            full_response = ""
+            async for update in graph.astream(state, config=config, stream_mode="updates"):
+                for node_name, node_output in update.items():
+                    if "messages" in node_output and node_output["messages"]:
+                        msg = node_output["messages"][-1]
+                        content = msg.content if hasattr(msg, "content") else str(msg)
+                        # 只推送新增的内容
+                        if content and content not in full_response:
+                            new_content = content[len(full_response):] if full_response.startswith(content[:50]) else content
+                            if new_content:
+                                yield f"data: {json.dumps({'agent': node_name, 'content': new_content})}\n\n"
+                            full_response = content
             log_step("Agent 工作流")
-            response_text = result["messages"][-1].content
-    
+            response_text = full_response
+
     # 保存短时记忆
     if should_save_memory and memory and memory.short_term.available:
         turn = [
@@ -119,13 +132,6 @@ async def stream_chat(query: str, user_id: str, session_id: str):
         ]
         await memory.save_conversation(user_id, session_id, turn)
         log_step("短期记忆保存")
-        
-    # 流式返回大模型结果
-    chunk_size = 80
-    for i in range(0, len(response_text), chunk_size):
-        chunk = response_text[i:i+chunk_size]
-        yield f"data: {json.dumps({'content': chunk})}\n\n"
-        await asyncio.sleep(0.002)
-        
+
     yield f"data: {json.dumps({'done': True})}\n\n"
     log_step("SSE 输出完成")

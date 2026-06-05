@@ -61,6 +61,8 @@ class DrugReviewAgentNode:
 - 相互作用信息必须是 query_knowledge_graph 实际返回的
 - 如果图谱中查不到某对药物的关系，标注"未在知识图谱中找到直接相互作用数据"
 
+- ⚠️ 工具调用限制：你最多调用 2 次工具，之后必须输出最终审查报告
+
 【记忆上下文】: {memory_context}
 """
         inner_agent = create_react_agent(self.llm, self.tools, prompt=system_prompt)

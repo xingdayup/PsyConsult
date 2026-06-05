@@ -59,6 +59,8 @@ class TreatmentAgentNode:
 - 所有推荐依据必须标明指南来源
 - 如果不确定，明确标注"建议参考最新临床指南"
 
+- ⚠️ 工具调用限制：你最多调用 2 次工具，之后必须输出最终方案
+
 【记忆上下文】: {memory_context}
 """
         inner_agent = create_react_agent(self.llm, self.tools, prompt=system_prompt)

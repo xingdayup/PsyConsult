@@ -261,6 +261,16 @@ async function scrollMessages() {
   }
 }
 
+function agentLabel(name: string): string {
+  const labels: Record<string, string> = {
+    orchestrator: '🧭 路由决策',
+    differential_diagnosis: '🔬 临床评估与鉴别诊断',
+    treatment_recommend: '💊 治疗推荐',
+    drug_interaction: '⚠️ 药物审查',
+  }
+  return labels[name] || name
+}
+
 function appendAssistantMessage(index: number, content: string) {
   const message = messages.value[index]
   if (message && message.role === 'assistant') {
@@ -316,7 +326,8 @@ async function sendQuery(preset?: string) {
         try {
           const parsed = JSON.parse(data)
           if (parsed.content) {
-            appendAssistantMessage(msgIdx, parsed.content)
+            const label = parsed.agent ? `\n### ${agentLabel(parsed.agent)}\n` : ''
+            appendAssistantMessage(msgIdx, label + parsed.content)
             await scrollMessages()
           }
         } catch {
