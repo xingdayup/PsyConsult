@@ -787,22 +787,25 @@ async function sendQuery(preset?: string) {
 }
 
 .stage-status {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
-  max-width: 100%;
-  margin-bottom: 10px;
-  padding: 6px 10px;
+  width: min(100%, 460px);
+  min-height: 40px;
+  margin-bottom: 14px;
+  padding: 8px 14px;
   border: 1px solid oklch(0.78 0.035 205);
-  border-radius: 999px;
+  border-radius: 12px;
   background: oklch(0.95 0.025 205);
   color: oklch(0.34 0.06 220);
   font-size: 13px;
   font-weight: 700;
+  line-height: 1.45;
 }
 
 .stage-status span {
   min-width: 0;
+  flex: 1;
   overflow-wrap: anywhere;
 }
 

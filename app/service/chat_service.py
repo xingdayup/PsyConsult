@@ -160,7 +160,7 @@ async def stream_chat(query: str, user_id: str, session_id: str):
                             "status",
                         )
                     elif data.get("event") == "tool_call":
-                        tool_name = data.get("tool", "")
+                        tool_name = data.get("tool") or "知识库工具"
                         yield emit_sse(
                             {"status": "agent_tool_call", "agent": current_agent, "content": f"正在调用 {tool_name}..."},
                             "status",
