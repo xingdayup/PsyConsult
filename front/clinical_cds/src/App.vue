@@ -90,7 +90,11 @@
             <span>{{ msg.role === 'user' ? '医生输入' : 'CDS 输出' }}</span>
           </div>
           <div class="message-bubble" :class="msg.role === 'user' ? 'user-bubble' : 'assistant-bubble'">
-            <div class="markdown-body" v-html="renderMarkdown(msg.content)"></div>
+            <div v-if="msg.role === 'assistant' && msg.status" class="stage-status" aria-live="polite">
+              <el-icon v-if="isThinking && idx === messages.length - 1" class="is-loading"><Loading /></el-icon>
+              <span>阶段：{{ msg.status }}</span>
+            </div>
+            <div v-if="msg.content" class="markdown-body" v-html="renderMarkdown(msg.content)"></div>
           </div>
         </article>
 
@@ -177,11 +181,15 @@ interface SessionItem {
 interface ChatMessage {
   role: 'user' | 'assistant'
   content: string
+  status?: string
 }
 
 const userId = ref('doctor_001')
 const currentSessionId = ref(`session_${Date.now()}`)
 const sessions = ref<SessionItem[]>([{ id: currentSessionId.value, name: '新诊疗会话' }])
+const messagesBySession = ref<Record<string, ChatMessage[]>>({
+  [currentSessionId.value]: [],
+})
 const messages = ref<ChatMessage[]>([])
 const inputMessage = ref('')
 const isThinking = ref(false)
@@ -246,16 +254,29 @@ function renderMarkdown(text: string) {
   return DOMPurify.sanitize(html)
 }
 
-function selectSession(sessionId: string) {
+function getSessionMessages(sessionId: string): ChatMessage[] {
+  if (!messagesBySession.value[sessionId]) {
+    messagesBySession.value[sessionId] = []
+  }
+  return messagesBySession.value[sessionId]
+}
+
+function setCurrentSessionMessages(sessionId: string) {
+  messages.value = getSessionMessages(sessionId)
+}
+
+async function selectSession(sessionId: string) {
   currentSessionId.value = sessionId
-  messages.value = []
+  setCurrentSessionMessages(sessionId)
+  await scrollMessages()
 }
 
 function createSession() {
   const id = `session_${Date.now()}`
   sessions.value.unshift({ id, name: `诊疗会话 ${sessions.value.length + 1}` })
+  messagesBySession.value[id] = []
   currentSessionId.value = id
-  messages.value = []
+  setCurrentSessionMessages(id)
 }
 
 async function scrollMessages() {
@@ -275,17 +296,41 @@ function agentLabel(name: string): string {
   return labels[name] || name
 }
 
-function appendAssistantMessage(index: number, content: string) {
-  const message = messages.value[index]
+function statusLabel(parsed: { status?: string; agent?: string; content?: string }): string {
+  if (parsed.status === 'agent_node_start' && parsed.agent) {
+    return `正在${agentLabel(parsed.agent)}...`
+  }
+  if (parsed.status === 'agent_tool_call') {
+    return parsed.content || '正在查询知识库...'
+  }
+  if (parsed.status === 'agent_tool_done') {
+    return parsed.content || '工具查询完成'
+  }
+  if (parsed.status === 'agent_node_complete' && parsed.agent) {
+    return `${agentLabel(parsed.agent)} 已完成`
+  }
+  return parsed.content || ''
+}
+
+function appendAssistantMessage(sessionId: string, index: number, content: string) {
+  const message = getSessionMessages(sessionId)[index]
   if (message && message.role === 'assistant') {
     message.content += content
   }
 }
 
-function replaceAssistantMessage(index: number, content: string) {
-  const message = messages.value[index]
+function replaceAssistantMessage(sessionId: string, index: number, content: string) {
+  const message = getSessionMessages(sessionId)[index]
   if (message && message.role === 'assistant') {
     message.content = content
+    message.status = undefined
+  }
+}
+
+function updateAssistantStatus(sessionId: string, index: number, status: string) {
+  const message = getSessionMessages(sessionId)[index]
+  if (message && message.role === 'assistant') {
+    message.status = status
   }
 }
 
@@ -293,11 +338,16 @@ async function sendQuery(preset?: string) {
   const query = preset || inputMessage.value.trim()
   if (!query || isThinking.value) return
 
-  messages.value.push({ role: 'user', content: query })
+  const requestSessionId = currentSessionId.value
+  const sessionMessages = getSessionMessages(requestSessionId)
+  setCurrentSessionMessages(requestSessionId)
+
+  sessionMessages.push({ role: 'user', content: query })
   inputMessage.value = ''
   isThinking.value = true
-  const msgIdx = messages.value.length
-  messages.value.push({ role: 'assistant', content: '' })
+  const msgIdx = sessionMessages.length
+  sessionMessages.push({ role: 'assistant', content: '' })
+  const lastContentAgent = { current: '' }
   await scrollMessages()
 
   try {
@@ -312,7 +362,7 @@ async function sendQuery(preset?: string) {
     const response = await fetch(`${apiBaseUrl}/api/chat`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ query, session_id: currentSessionId.value }),
+      body: JSON.stringify({ query, session_id: requestSessionId }),
     })
 
     if (!response.ok || !response.body) {
@@ -337,10 +387,29 @@ async function sendQuery(preset?: string) {
 
         try {
           const parsed = JSON.parse(data)
+          if (parsed.done) {
+            updateAssistantStatus(requestSessionId, msgIdx, '分析完成')
+            continue
+          }
+
+          if (parsed.status) {
+            updateAssistantStatus(requestSessionId, msgIdx, statusLabel(parsed))
+            if (currentSessionId.value === requestSessionId) {
+              await scrollMessages()
+            }
+            continue
+          }
+
           if (parsed.content) {
-            const label = parsed.agent ? `\n### ${agentLabel(parsed.agent)}\n` : ''
-            appendAssistantMessage(msgIdx, label + parsed.content)
-            await scrollMessages()
+            let label = ''
+            if (parsed.agent && parsed.agent !== lastContentAgent.current) {
+              lastContentAgent.current = parsed.agent
+              label = `\n### ${agentLabel(parsed.agent)}\n`
+            }
+            appendAssistantMessage(requestSessionId, msgIdx, label + parsed.content)
+            if (currentSessionId.value === requestSessionId) {
+              await scrollMessages()
+            }
           }
         } catch {
           // Ignore partial SSE frames until the next chunk completes them.
@@ -348,10 +417,12 @@ async function sendQuery(preset?: string) {
       }
     }
   } catch {
-    replaceAssistantMessage(msgIdx, '请求失败，请检查后端服务是否启动，或确认 5000 端口可访问。')
+    replaceAssistantMessage(requestSessionId, msgIdx, '请求失败，请检查后端服务是否启动，或确认 5000 端口可访问。')
   } finally {
     isThinking.value = false
-    await scrollMessages()
+    if (currentSessionId.value === requestSessionId) {
+      await scrollMessages()
+    }
   }
 }
 </script>
@@ -659,6 +730,26 @@ async function sendQuery(preset?: string) {
   border: 1px solid oklch(0.84 0.018 235);
   background: oklch(0.98 0.006 215);
   color: oklch(0.25 0.028 245);
+}
+
+.stage-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+  margin-bottom: 10px;
+  padding: 6px 10px;
+  border: 1px solid oklch(0.78 0.035 205);
+  border-radius: 999px;
+  background: oklch(0.95 0.025 205);
+  color: oklch(0.34 0.06 220);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.stage-status span {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .markdown-body :deep(p) {

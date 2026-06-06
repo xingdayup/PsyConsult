@@ -1,14 +1,14 @@
-import operator
 from typing import Annotated, TypedDict, Any, Sequence
 from langchain_core.messages import BaseMessage
+from langgraph.graph.message import add_messages
 
 class AgentState(TypedDict):
     """
     LangGraph 全局状态。
     负责在 Router、各个子 Agent 以及 Memory 之间传递信息。
     """
-    # 消息记录，使用 operator.add 将新消息追加到列表末尾
-    messages: Annotated[Sequence[BaseMessage], operator.add]
+    # 消息记录，使用 add_messages 将新消息追加到列表末尾并自动转换元组
+    messages: Annotated[Sequence[BaseMessage], add_messages]
     
     # 决定下一步走向哪个节点的路由标记
     next_agent: str

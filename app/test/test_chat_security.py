@@ -1,3 +1,8 @@
+import os
+import subprocess
+import sys
+from pathlib import Path
+
 import pytest
 from fastapi.testclient import TestClient
 from pydantic import ValidationError
@@ -6,6 +11,27 @@ from app.app_config.settings import settings
 from app.app_main import app
 from app.router import chat as chat_router
 from app.schemas.chat import ChatRequest
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+APP_DIR = PROJECT_ROOT / "app"
+
+
+def test_app_main_imports_when_started_from_app_directory():
+    env = os.environ.copy()
+    env.setdefault("DASHSCOPE_API_KEY", "dummy")
+    env.setdefault("REDIS_URL", "redis://localhost:6379")
+
+    result = subprocess.run(
+        [sys.executable, "-c", "import app_main; print('ok')"],
+        cwd=APP_DIR,
+        env=env,
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert "ok" in result.stdout
 
 
 def test_chat_request_rejects_blank_query():

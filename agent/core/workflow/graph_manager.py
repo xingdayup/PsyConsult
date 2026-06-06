@@ -1,14 +1,18 @@
 """LangGraph 临床决策支持系统图组装器。"""
 
 import asyncio
+import logging
 import os
 import time
 from langgraph.graph import StateGraph, START, END
+from langchain_core.messages import HumanMessage
 from core.workflow.state import AgentState
 from agents.orchestrator import OrchestratorAgent
 from agents.diagnosis_agent import DiagnosisAgentNode
 from agents.treatment_agent import TreatmentAgentNode
 from agents.drug_review_agent import DrugReviewAgentNode
+
+logger = logging.getLogger("clinical_cds.agent")
 
 
 class AgentGraphManager:
@@ -25,11 +29,24 @@ class AgentGraphManager:
 
     async def _timed_node(self, node_name: str, node, state: AgentState):
         start = time.perf_counter()
-        print(f"⏱️ [agent:{node_name}] 开始")
+        user_id = state.get("user_id", "")
+        session_id = state.get("session_id", "")
+        logger.info(
+            "event=agent_node_start user_id=%s session_id=%s node=%s",
+            user_id,
+            session_id,
+            node_name,
+        )
         try:
             return await node(state)
         finally:
-            print(f"⏱️ [agent:{node_name}] 结束: {time.perf_counter() - start:.2f}s")
+            logger.info(
+                "event=agent_node_complete user_id=%s session_id=%s node=%s elapsed=%.3fs",
+                user_id,
+                session_id,
+                node_name,
+                time.perf_counter() - start,
+            )
 
     async def _run_orchestrator(self, state: AgentState):
         return await self._timed_node("orchestrator", self.orchestrator.route, state)
@@ -87,7 +104,7 @@ async def test_graph():
     # 测试病例: 典型抑郁发作
     query = "患者近两周情绪低落、失眠、食欲下降，以前喜欢打篮球现在没兴趣了"
     print(f"👨‍⚕️ 医生: {query}")
-    state["messages"].append(("user", query))
+    state["messages"].append(HumanMessage(content=query))
 
     result = await graph.ainvoke(state)
     print(f"\n🤖 CDS:\n{result['messages'][-1].content}")

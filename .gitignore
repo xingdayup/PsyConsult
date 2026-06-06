@@ -4,6 +4,7 @@ node_modules/
 __pycache__/
 *.pyc
 front/clinical_cds/dist/
+logs/
 
 # Secrets
 .env

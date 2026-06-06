@@ -4,7 +4,9 @@
 import os
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
+from langchain_core.messages import AIMessage, AIMessageChunk, SystemMessage, ToolMessage
 from langgraph.prebuilt import create_react_agent
+from langgraph.config import get_stream_writer
 from typing import Dict, Any
 from core.workflow.state import AgentState
 from tools.vector_tool import query_vector_db
@@ -19,10 +21,11 @@ class DiagnosisAgentNode:
         from config import get_settings
         self.llm = ChatOpenAI(**get_settings().get_model_config(), temperature=0.1)
         self.tools = [query_synonyms, query_knowledge_graph, query_vector_db]
+        self.inner_agent = create_react_agent(self.llm, self.tools)
 
-    async def __call__(self, state: AgentState) -> Dict[str, Any]:
-        memory_context = state.get("memory_context", "")
-        system_prompt = f"""你是一个精神科临床诊断专家 Agent。你需要完成两步任务。
+    def _build_system_prompt(self, memory_context: str) -> str:
+        memory_block = f"\n## 历史对话 / 用户偏好\n{memory_context}" if memory_context else ""
+        return f"""你是一个精神科临床诊断专家 Agent。请从对话记录中读取患者的症状描述，完成两步任务。
 
 **第一步：症状提取**
 - 用 query_synonyms 将口语表达（如"睡不着"）映射为标准术语（如"失眠"）
@@ -59,10 +62,39 @@ class DiagnosisAgentNode:
 - 只输出前 2 个最可能候选，每个不超过 5 行对照
 - ⚠️ 你最多调用 2 次工具，之后必须输出最终结果
 - 不要编造未提及的症状
+{memory_block}"""
 
-【记忆上下文】: {memory_context}
-"""
-        inner_agent = create_react_agent(self.llm, self.tools, prompt=system_prompt)
-        result = await inner_agent.ainvoke({"messages": state["messages"]})
-        final_message = result["messages"][-1]
-        return {"messages": [final_message]}
+    async def __call__(self, state: AgentState) -> Dict[str, Any]:
+        writer = get_stream_writer()
+        writer({"agent": "differential_diagnosis", "event": "start"})
+
+        system_prompt = self._build_system_prompt(state.get("memory_context", ""))
+        messages = [SystemMessage(content=system_prompt)] + list(state["messages"])
+
+        full_content = ""
+        buffer = ""
+        async for msg, metadata in self.inner_agent.astream(
+            {"messages": messages}, stream_mode="messages",
+        ):
+            if isinstance(msg, AIMessageChunk):
+                if msg.content:
+                    full_content += msg.content
+                    buffer += msg.content
+                    if len(buffer) >= 20 or "\n" in buffer:
+                        writer({"agent": "differential_diagnosis", "chunk": buffer})
+                        buffer = ""
+                elif hasattr(msg, "tool_calls") and msg.tool_calls:
+                    if buffer:
+                        writer({"agent": "differential_diagnosis", "chunk": buffer})
+                        buffer = ""
+                    for tc in msg.tool_calls:
+                        writer({"agent": "differential_diagnosis", "event": "tool_call", "tool": tc.get("name", "")})
+            elif isinstance(msg, ToolMessage):
+                if buffer:
+                    writer({"agent": "differential_diagnosis", "chunk": buffer})
+                    buffer = ""
+                writer({"agent": "differential_diagnosis", "event": "tool_done"})
+        if buffer:
+            writer({"agent": "differential_diagnosis", "chunk": buffer})
+
+        return {"messages": [AIMessage(content=full_content)]}

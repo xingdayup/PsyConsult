@@ -8,11 +8,6 @@
     python main.py --query "什么是VPC"  # 单次查询模式
 """
 
-"""
- * 小滴课堂,愿景：让技术不再难学
- * @Remark 有问题联系我【xdclass68】
- * 源码-笔记-技术交流群,官网 https://xdclass.net
-"""
 import argparse
 import asyncio
 import logging
@@ -37,6 +32,7 @@ if hasattr(sys.stdout, 'reconfigure'):
 
 from config import get_settings
 from core.memory import MemoryManager
+from langchain_core.messages import HumanMessage
 from core.workflow.graph_manager import AgentGraphManager
 from core.workflow.state import AgentState
 
@@ -130,7 +126,7 @@ async def run_interactive_mode(
             mem_context = await _extract_memory_context(memory, user_id, session_id, user_input)
             
             # 使用新输入和内存更新状态
-            state["messages"].append(("user", user_input))
+            state["messages"].append(HumanMessage(content=user_input))
             state["memory_context"] = mem_context
 
             # 2. 执行图
@@ -207,7 +203,7 @@ async def main() -> None:
             graph = graph_manager.build_graph()
             mem_context = await _extract_memory_context(memory, user_id, session_id, args.query)
             state: AgentState = {
-                "messages": [("user", args.query)],
+                "messages": [HumanMessage(content=args.query)],
                 "user_id": user_id,
                 "session_id": session_id,
                 "memory_context": mem_context,

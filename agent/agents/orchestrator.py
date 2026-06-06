@@ -1,13 +1,10 @@
-"""
- * 小滴课堂,愿景：让技术不再难学
- * @Remark 有问题联系我【xdclass68】
- * 源码-笔记-技术交流群,官网 https://xdclass.net
-"""
+"""临床路由节点 — 分析用户意图并分发给对应的领域 Agent。"""
 import os
 from typing import Dict, Any
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
+from langgraph.config import get_stream_writer
 
 from core.workflow.state import AgentState
 
@@ -26,6 +23,10 @@ class OrchestratorAgent:
         """
         根据用户的最新输入，决定路由走向。
         """
+        # 流式状态：开始路由
+        writer = get_stream_writer()
+        writer({"agent": "orchestrator", "event": "start"})
+
         # 获取最新的一条用户消息
         messages = state.get("messages", [])
         if not messages:
@@ -41,6 +42,8 @@ class OrchestratorAgent:
                 last_message = str(last_msg_obj)
         memory_context = state.get("memory_context", "")
 
+        memory_block = f"\n【历史对话参考】：\n{memory_context}" if memory_context else ""
+
         system_prompt = f"""你是一个精神科临床决策支持系统的总路由（Clinical Router）。
 你的任务是根据医生的输入，决定将诊疗请求分发给哪个专业的临床 Agent 处理。
 
@@ -54,11 +57,9 @@ class OrchestratorAgent:
 - 已有症状清单需要诊断 → differential_diagnosis
 - 已有诊断需要治疗方案 → treatment_recommend
 - 涉及药物名称或用药方案 → drug_interaction
+{memory_block}
 
-【背景记忆】：
-{memory_context}
-
-请仅输出你要路由到的名称（必须是: differential_diagnosis, differential_diagnosis, treatment_recommend, drug_interaction 中的一个），不要输出任何其他解释性文字。
+请仅输出你要路由到的名称（必须是: differential_diagnosis, treatment_recommend, drug_interaction 中的一个），不要输出任何其他解释性文字。
 如果你无法判断，默认输出 differential_diagnosis。
 """
 
@@ -66,7 +67,7 @@ class OrchestratorAgent:
             SystemMessage(content=system_prompt),
             HumanMessage(content=last_message)
         ])
-        
+
         decision = response.content.strip().lower()
         if "drug" in decision:
             next_node = "drug_interaction"

@@ -1,5 +1,6 @@
 import asyncio
 import json
+import logging
 import sys
 import os
 import time
@@ -9,6 +10,7 @@ AGENT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path
 if AGENT_DIR not in sys.path:
     sys.path.insert(0, AGENT_DIR)
 
+from langchain_core.messages import HumanMessage
 from core.workflow.graph_manager import AgentGraphManager
 from core.memory.memory_manager import MemoryManager
 from app.infra.cache import semantic_cache
@@ -16,6 +18,7 @@ from app.infra.cache import semantic_cache
 # Global variables for graph and memory
 graph = None
 memory = None
+logger = logging.getLogger("clinical_cds.chat")
 
 MIN_CLINICAL_QUERY_LENGTH = 4
 SHORT_QUERY_RESPONSE = (
@@ -26,11 +29,11 @@ SHORT_QUERY_RESPONSE = (
 async def init_agent_system():
     global graph, memory
     if graph is None:
-        print("🚀 初始化 Multi-Agent 图编排...")
+        logger.info("event=agent_system_init step=graph_start")
         graph_manager = AgentGraphManager()
         graph = graph_manager.build_graph()
         
-        print("🧠 初始化 Memory 系统...")
+        logger.info("event=agent_system_init step=memory_start")
         from config import get_settings
         settings = get_settings()
         memory = MemoryManager(
@@ -43,7 +46,7 @@ async def init_agent_system():
         )
         await memory.initialize()
         await semantic_cache.initialize()
-        print("✅ Agent 系统初始化完成！")
+        logger.info("event=agent_system_init step=complete")
 
 async def _extract_memory_context(user_id: str, session_id: str, query: str) -> str:
     context_parts = []
@@ -73,33 +76,67 @@ async def stream_chat(query: str, user_id: str, session_id: str):
     request_start = time.perf_counter()
     last_step = request_start
 
+    def emit_sse(payload: dict, kind: str) -> str:
+        logger.info(
+            "event=sse_emit user_id=%s session_id=%s kind=%s total=%.3fs",
+            user_id,
+            session_id,
+            kind,
+            time.perf_counter() - request_start,
+        )
+        return f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
+
     def log_step(name: str) -> None:
         nonlocal last_step
         now = time.perf_counter()
-        print(f"⏱️ [chat] {name}: {now - last_step:.2f}s (total {now - request_start:.2f}s)")
+        logger.info(
+            "event=chat_step user_id=%s session_id=%s step=%s elapsed=%.3fs total=%.3fs",
+            user_id,
+            session_id,
+            name,
+            now - last_step,
+            now - request_start,
+        )
         last_step = now
+
+    logger.info(
+        "event=chat_request_start user_id=%s session_id=%s query_chars=%d",
+        user_id,
+        session_id,
+        len(query),
+    )
+    yield emit_sse({"status": "accepted", "content": "已接收病例，开始分析..."}, "status")
 
     should_save_memory = True
 
     if _is_insufficient_query(query):
         response_text = SHORT_QUERY_RESPONSE
         should_save_memory = False
-        print(f"🚦 输入过短，跳过缓存和 Agent 工作流: {query!r}")
-        log_step("本地输入校验")
+        logger.info("event=chat_short_query user_id=%s session_id=%s query=%r", user_id, session_id, query)
+        log_step("local_input_validation")
+        yield emit_sse({"agent": "input_validation", "content": response_text}, "content")
     else:
+        yield emit_sse({"status": "semantic_cache_check", "content": "正在检查语义缓存..."}, "status")
         cache_hit = await semantic_cache.get_cache(query, user_id)
-        log_step("语义缓存检查")
+        log_step("semantic_cache_check")
         if cache_hit:
             response_text = cache_hit["answer"]
-            print(
-                f"⚡ 语义缓存命中: {cache_hit['level']} distance={cache_hit['distance']:.4f} matched='{cache_hit['matched_question']}'"
+            logger.info(
+                "event=semantic_cache_hit user_id=%s session_id=%s level=%s distance=%.4f matched=%r",
+                user_id,
+                session_id,
+                cache_hit["level"],
+                cache_hit["distance"],
+                cache_hit["matched_question"],
             )
+            yield emit_sse({"agent": "semantic_cache", "content": response_text}, "content")
         else:
-            print("🏃 进入 Agent 工作流推理...")
+            logger.info("event=agent_workflow_start user_id=%s session_id=%s", user_id, session_id)
+            yield emit_sse({"status": "memory_context_extract", "content": "正在提取会话记忆..."}, "status")
             mem_context = await _extract_memory_context(user_id, session_id, query)
-            log_step("记忆上下文提取")
+            log_step("memory_context_extract")
             state = {
-                "messages": [("user", query)],
+                "messages": [HumanMessage(content=query)],
                 "user_id": user_id,
                 "session_id": session_id,
                 "memory_context": mem_context,
@@ -108,20 +145,51 @@ async def stream_chat(query: str, user_id: str, session_id: str):
             }
             config = {"configurable": {"user_id": user_id}}
 
-            # 逐 Agent 流式推送
+            yield emit_sse({"status": "agent_workflow_start", "content": "正在进入多智能体分析..."}, "status")
             full_response = ""
-            async for update in graph.astream(state, config=config, stream_mode="updates"):
-                for node_name, node_output in update.items():
-                    if "messages" in node_output and node_output["messages"]:
-                        msg = node_output["messages"][-1]
-                        content = msg.content if hasattr(msg, "content") else str(msg)
-                        # 只推送新增的内容
-                        if content and content not in full_response:
-                            new_content = content[len(full_response):] if full_response.startswith(content[:50]) else content
-                            if new_content:
-                                yield f"data: {json.dumps({'agent': node_name, 'content': new_content})}\n\n"
-                            full_response = content
-            log_step("Agent 工作流")
+            current_agent = None
+
+            async for stream_mode, data in graph.astream(
+                state, config=config, stream_mode=["updates", "custom"]
+            ):
+                if stream_mode == "custom":
+                    if data.get("event") == "start":
+                        current_agent = data["agent"]
+                        yield emit_sse(
+                            {"status": "agent_node_start", "agent": current_agent},
+                            "status",
+                        )
+                    elif data.get("event") == "tool_call":
+                        tool_name = data.get("tool", "")
+                        yield emit_sse(
+                            {"status": "agent_tool_call", "agent": current_agent, "content": f"正在调用 {tool_name}..."},
+                            "status",
+                        )
+                    elif data.get("event") == "tool_done":
+                        yield emit_sse(
+                            {"status": "agent_tool_done", "agent": current_agent, "content": "工具查询完成，正在生成分析..."},
+                            "status",
+                        )
+                    elif "chunk" in data:
+                        full_response += data["chunk"]
+                        yield emit_sse(
+                            {"agent": data.get("agent", current_agent), "content": data["chunk"]},
+                            "content",
+                        )
+
+                elif stream_mode == "updates":
+                    for node_name, node_output in data.items():
+                        logger.info("event=agent_update user_id=%s session_id=%s node=%s", user_id, session_id, node_name)
+                        yield emit_sse(
+                            {
+                                "status": "agent_node_complete",
+                                "agent": node_name,
+                                "content": f"{node_name} 已完成，正在整理结果...",
+                            },
+                            "status",
+                        )
+
+            log_step("agent_workflow")
             response_text = full_response
 
     # 保存短时记忆
@@ -131,7 +199,7 @@ async def stream_chat(query: str, user_id: str, session_id: str):
             {"role": "assistant", "content": response_text},
         ]
         await memory.save_conversation(user_id, session_id, turn)
-        log_step("短期记忆保存")
+        log_step("short_term_memory_save")
 
-    yield f"data: {json.dumps({'done': True})}\n\n"
-    log_step("SSE 输出完成")
+    yield emit_sse({"done": True}, "done")
+    log_step("sse_complete")

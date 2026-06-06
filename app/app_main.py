@@ -2,7 +2,11 @@ import sys
 import os
 
 # 将 agent 目录加入 sys.path
-AGENT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "agent")
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+AGENT_DIR = os.path.join(PROJECT_ROOT, "agent")
 if AGENT_DIR not in sys.path:
     sys.path.insert(0, AGENT_DIR)
 
@@ -11,8 +15,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from app.app_config.settings import settings
+from app.infra.logging_config import configure_backend_logging
 from app.router import chat
 from app.service.chat_service import init_agent_system
+
+configure_backend_logging()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
