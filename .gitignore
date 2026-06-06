@@ -6,8 +6,11 @@ __pycache__/
 front/clinical_cds/dist/
 logs/
 
-# Secrets
+# Secrets & Local
 .env
+.env.local
+CLAUDE.md
+front/clinical_cds/CLAUDE.md
 
 # IDE
 .idea/

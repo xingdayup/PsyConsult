@@ -7,13 +7,13 @@
 项目根目录：
 
 ```powershell
-cd E:\000WORK\项目1\clinical_cds
+cd <项目根目录>
 ```
 
 当前推荐使用的 Python 虚拟环境：
 
 ```powershell
-E:\000WORK\学习文档\cloud_agent\.venv\Scripts\python.exe
+python
 ```
 
 需要本机已安装：
@@ -62,7 +62,7 @@ VITE_API_AUTH_TOKEN=local-dev-token
 Python 依赖：
 
 ```powershell
-& 'E:\000WORK\学习文档\cloud_agent\.venv\Scripts\python.exe' -m pip install -r agent\requirements.txt
+& 'python' -m pip install -r agent\requirements.txt
 ```
 
 前端依赖：
@@ -106,7 +106,7 @@ neo4j / password123
 推荐从项目根目录用包方式启动：
 
 ```powershell
-& 'E:\000WORK\学习文档\cloud_agent\.venv\Scripts\python.exe' -m uvicorn app.app_main:app --host 0.0.0.0 --port 5000 --reload
+& 'python' -m uvicorn app.app_main:app --host 0.0.0.0 --port 5000 --reload
 ```
 
 后端地址：
@@ -159,7 +159,7 @@ event=chat_step user_id=doctor_001 session_id=session_demo step=sse_complete ela
 打开新终端：
 
 ```powershell
-cd E:\000WORK\项目1\clinical_cds\front\clinical_cds
+cd <项目根目录>\front\clinical_cds
 npm run dev
 ```
 
@@ -209,19 +209,19 @@ curl.exe -i -X POST http://127.0.0.1:5000/api/chat `
 Python 编译检查：
 
 ```powershell
-& 'E:\000WORK\学习文档\cloud_agent\.venv\Scripts\python.exe' -m compileall -q agent app
+& 'python' -m compileall -q agent app
 ```
 
 后端包导入检查：
 
 ```powershell
-& 'E:\000WORK\学习文档\cloud_agent\.venv\Scripts\python.exe' -c "import app.app_main; print('ok')"
+& 'python' -c "import app.app_main; print('ok')"
 ```
 
 后端自动化测试：
 
 ```powershell
-& 'E:\000WORK\学习文档\cloud_agent\.venv\Scripts\python.exe' -m pytest -q
+& 'python' -m pytest -q
 ```
 
 前端类型检查：
