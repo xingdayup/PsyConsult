@@ -123,6 +123,20 @@ $js.Content -match '127\.0\.0\.1|localhost'
 
 结果应为 `False`。如果为 `True`，说明 Pages 构建时没有拿到 `VITE_API_BASE_URL`。
 
+前端同时提供了运行时配置兜底。部署后打开：
+
+```text
+https://psyconsult.pages.dev/api/config
+```
+
+应返回：
+
+```json
+{"apiBaseUrl":"https://你的后端公网地址","apiAuthToken":""}
+```
+
+如果 `apiBaseUrl` 为空，说明 Cloudflare Pages 运行时环境变量也没有生效，需要检查变量是否配置在 Production 环境、变量名是否完全为 `VITE_API_BASE_URL`，并重新部署。
+
 ### 3. 后端 CORS 必须允许 Pages 域名
 
 后端环境变量必须包含：

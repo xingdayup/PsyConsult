@@ -194,8 +194,9 @@ const messages = ref<ChatMessage[]>([])
 const inputMessage = ref('')
 const isThinking = ref(false)
 const msgContainer = ref<HTMLElement | null>(null)
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV ? 'http://127.0.0.1:5000' : '')
-const apiAuthToken = import.meta.env.VITE_API_AUTH_TOKEN || ''
+const apiBaseUrl = ref(import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV ? 'http://127.0.0.1:5000' : ''))
+const apiAuthToken = ref(import.meta.env.VITE_API_AUTH_TOKEN || '')
+let runtimeConfigPromise: Promise<void> | null = null
 
 const scenarios = [
   {
@@ -252,6 +253,39 @@ const knowledgeSources = [
 function renderMarkdown(text: string) {
   const html = marked.parse(text, { breaks: true, gfm: true }) as string
   return DOMPurify.sanitize(html)
+}
+
+async function loadRuntimeConfig() {
+  if (runtimeConfigPromise) {
+    return runtimeConfigPromise
+  }
+
+  runtimeConfigPromise = (async () => {
+    if (apiBaseUrl.value && apiAuthToken.value) return
+
+    try {
+      const response = await fetch('/api/config', {
+        headers: { Accept: 'application/json' },
+        cache: 'no-store',
+      })
+      if (!response.ok) return
+
+      const config = (await response.json()) as {
+        apiBaseUrl?: unknown
+        apiAuthToken?: unknown
+      }
+      if (!apiBaseUrl.value && typeof config.apiBaseUrl === 'string') {
+        apiBaseUrl.value = config.apiBaseUrl
+      }
+      if (!apiAuthToken.value && typeof config.apiAuthToken === 'string') {
+        apiAuthToken.value = config.apiAuthToken
+      }
+    } catch {
+      // Local Vite dev has no Pages Function; the development fallback above is enough.
+    }
+  })()
+
+  return runtimeConfigPromise
 }
 
 function getSessionMessages(sessionId: string): ChatMessage[] {
@@ -351,11 +385,13 @@ async function sendQuery(preset?: string) {
   await scrollMessages()
 
   try {
-    if (!apiBaseUrl) {
+    await loadRuntimeConfig()
+
+    if (!apiBaseUrl.value) {
       replaceAssistantMessage(
         requestSessionId,
         msgIdx,
-        '线上前端缺少后端 API 地址。请在 Cloudflare Pages 环境变量中设置 VITE_API_BASE_URL 为后端公网 HTTPS 地址，然后重新部署。',
+        '线上前端缺少后端 API 地址。请在 Cloudflare Pages 环境变量中设置 VITE_API_BASE_URL 为后端公网 HTTPS 地址，然后重新部署。也可以访问 /api/config 检查运行时配置是否生效。',
       )
       return
     }
@@ -364,11 +400,11 @@ async function sendQuery(preset?: string) {
       'Content-Type': 'application/json',
       'X-User-Id': userId.value,
     }
-    if (apiAuthToken) {
-      headers.Authorization = `Bearer ${apiAuthToken}`
+    if (apiAuthToken.value) {
+      headers.Authorization = `Bearer ${apiAuthToken.value}`
     }
 
-    const response = await fetch(`${apiBaseUrl}/api/chat`, {
+    const response = await fetch(`${apiBaseUrl.value}/api/chat`, {
       method: 'POST',
       headers,
       body: JSON.stringify({ query, session_id: requestSessionId }),
