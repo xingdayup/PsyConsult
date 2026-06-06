@@ -96,6 +96,65 @@ START → orchestrator (路由)
 | Neo4j | localhost:7474 | 🟢 |
 | MySQL | localhost:3306 | 🟡 已配置，代码层待接入 |
 
+## 线上部署排查要点
+
+### 1. Pages 只托管前端，不能直接读数据库
+
+`psyconsult.pages.dev` 是 Cloudflare Pages 静态前端。浏览器不会也不能直接连接 Redis、Milvus、Neo4j 或 MySQL；所有数据库读取都必须经过 FastAPI 后端。
+
+### 2. 必须配置后端公网地址
+
+Cloudflare Pages 的生产环境变量必须设置：
+
+```env
+VITE_API_BASE_URL=https://你的后端公网地址
+```
+
+如果使用 Cloudflare Tunnel，本值应是当前可访问的 `https://xxx.trycloudflare.com` 或固定隧道域名；如果使用 Railway，本值应是 `https://xxx.up.railway.app`。
+
+设置后必须重新部署 Pages，否则旧 JS 产物仍会继续使用旧地址。可用以下命令检查线上产物是否还包含本地地址：
+
+```powershell
+$html = Invoke-WebRequest https://psyconsult.pages.dev/ -UseBasicParsing
+$jsPath = [regex]::Match($html.Content, '/assets/[^"]+\.js').Value
+$js = Invoke-WebRequest "https://psyconsult.pages.dev$jsPath" -UseBasicParsing
+$js.Content -match '127\.0\.0\.1|localhost'
+```
+
+结果应为 `False`。如果为 `True`，说明 Pages 构建时没有拿到 `VITE_API_BASE_URL`。
+
+### 3. 后端 CORS 必须允许 Pages 域名
+
+后端环境变量必须包含：
+
+```env
+CORS_ORIGINS=https://psyconsult.pages.dev
+```
+
+如果使用本地前端调试，可以追加本地地址：
+
+```env
+CORS_ORIGINS=https://psyconsult.pages.dev,http://localhost:5173,http://127.0.0.1:5173
+```
+
+### 4. 直接测试后端 SSE
+
+不要先从 Pages 测。先直接请求后端公网地址：
+
+```powershell
+curl.exe -N "https://你的后端公网地址/api/chat" `
+  -H "Content-Type: application/json" `
+  -H "X-User-Id: doctor_001" `
+  -d "{\"query\":\"患者情绪低落失眠两周\",\"session_id\":\"deploy_smoke\"}"
+```
+
+正常时应很快看到多行 `data: {...}`，第一条通常是 `status=accepted`。如果这里不流式，问题在后端、隧道、代理或平台缓冲；如果这里流式但 Pages 不流式，问题在 Pages 环境变量或浏览器请求地址。
+
+### 5. 数据库连接位置要和后端一致
+
+- 如果后端运行在本地 Windows 并通过 Cloudflare Tunnel 暴露：Redis、Milvus、Neo4j 可以继续是本地 Docker 的 `localhost`。
+- 如果后端部署到 Railway 或其他云平台：`localhost` 指向云容器自己，不是你的电脑。必须改用云上的 Redis、Zilliz/Milvus、Neo4j Aura 等公网/内网连接地址，并重新导入数据。
+
 ## 待办事项
 
 1. **固定域名隧道**：快速隧道每次重启 URL 会变，需注册域名 + named tunnel（参考 `docs/10-ops-guide.md` 第 7 节）

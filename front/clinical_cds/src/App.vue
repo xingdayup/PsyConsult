@@ -194,7 +194,7 @@ const messages = ref<ChatMessage[]>([])
 const inputMessage = ref('')
 const isThinking = ref(false)
 const msgContainer = ref<HTMLElement | null>(null)
-const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:5000'
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV ? 'http://127.0.0.1:5000' : '')
 const apiAuthToken = import.meta.env.VITE_API_AUTH_TOKEN || ''
 
 const scenarios = [
@@ -351,6 +351,15 @@ async function sendQuery(preset?: string) {
   await scrollMessages()
 
   try {
+    if (!apiBaseUrl) {
+      replaceAssistantMessage(
+        requestSessionId,
+        msgIdx,
+        '线上前端缺少后端 API 地址。请在 Cloudflare Pages 环境变量中设置 VITE_API_BASE_URL 为后端公网 HTTPS 地址，然后重新部署。',
+      )
+      return
+    }
+
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
       'X-User-Id': userId.value,
