@@ -194,7 +194,16 @@ const messages = ref<ChatMessage[]>([])
 const inputMessage = ref('')
 const isThinking = ref(false)
 const msgContainer = ref<HTMLElement | null>(null)
-const apiBaseUrl = ref(import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV ? 'http://127.0.0.1:5000' : ''))
+const productionApiFallback = 'https://monthly-motel-understood-connection.trycloudflare.com'
+const buildApiBaseUrl = import.meta.env.VITE_API_BASE_URL || ''
+const isLocalApiBaseUrl = (value: string) => /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/i.test(value)
+const apiBaseUrl = ref(
+  import.meta.env.DEV
+    ? buildApiBaseUrl || 'http://127.0.0.1:5000'
+    : buildApiBaseUrl && !isLocalApiBaseUrl(buildApiBaseUrl)
+      ? buildApiBaseUrl
+      : productionApiFallback,
+)
 const apiAuthToken = ref(import.meta.env.VITE_API_AUTH_TOKEN || '')
 let runtimeConfigPromise: Promise<void> | null = null
 
@@ -274,10 +283,10 @@ async function loadRuntimeConfig() {
         apiBaseUrl?: unknown
         apiAuthToken?: unknown
       }
-      if (!apiBaseUrl.value && typeof config.apiBaseUrl === 'string') {
+      if (typeof config.apiBaseUrl === 'string' && config.apiBaseUrl) {
         apiBaseUrl.value = config.apiBaseUrl
       }
-      if (!apiAuthToken.value && typeof config.apiAuthToken === 'string') {
+      if (typeof config.apiAuthToken === 'string') {
         apiAuthToken.value = config.apiAuthToken
       }
     } catch {

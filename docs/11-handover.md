@@ -137,6 +137,14 @@ https://psyconsult.pages.dev/api/config
 
 如果 `apiBaseUrl` 为空，说明 Cloudflare Pages 运行时环境变量也没有生效，需要检查变量是否配置在 Production 环境、变量名是否完全为 `VITE_API_BASE_URL`，并重新部署。
 
+当前前端代码还内置了一个生产兜底地址：
+
+```text
+https://monthly-motel-understood-connection.trycloudflare.com
+```
+
+这是 Cloudflare Quick Tunnel 临时域名，只适合救急。如果重启 tunnel 后域名变化，需要更新 Cloudflare Pages 环境变量，或修改前端兜底地址并重新部署。长期方案仍应使用固定 named tunnel 或正式后端域名。
+
 ### 3. 后端 CORS 必须允许 Pages 域名
 
 后端环境变量必须包含：
