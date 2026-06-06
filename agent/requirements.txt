@@ -10,6 +10,7 @@ langchain-mcp-adapters>=0.1.0
 
 # Model Provider
 langchain-community>=0.3.0
+langchain-openai>=1.0.0
 dashscope>=1.20.0
 
 # Utilities
@@ -23,9 +24,21 @@ asyncio-mqtt>=0.16.0
 aiofiles>=23.0.0
 
 # Database
+langchain-milvus>=0.3.0
+langchain-neo4j>=0.6.0
 neo4j>=5.20.0
 redis>=5.0.0
 pymilvus>=2.4.0
 
+# API
+fastapi>=0.115.0
+uvicorn>=0.34.0
+
+# Data ingestion
+langchain-text-splitters>=0.3.0
+
 # Logging
 structlog>=24.0.0
+
+# Testing
+pytest>=9.0.0

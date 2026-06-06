@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from app_config.settings import settings
+from app.app_config.settings import settings
 
 COLLECTION_NAME = "qa_semantic_cache"
 EMBEDDING_DIM = 1536

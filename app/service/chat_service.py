@@ -5,13 +5,13 @@ import os
 import time
 
 # 初始化 Agent 和 Graph
-AGENT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "agent")
+AGENT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "agent")
 if AGENT_DIR not in sys.path:
     sys.path.insert(0, AGENT_DIR)
 
 from core.workflow.graph_manager import AgentGraphManager
 from core.memory.memory_manager import MemoryManager
-from infra.cache import semantic_cache
+from app.infra.cache import semantic_cache
 
 # Global variables for graph and memory
 graph = None

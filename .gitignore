@@ -3,6 +3,7 @@ node_modules/
 .venv/
 __pycache__/
 *.pyc
+front/clinical_cds/dist/
 
 # Secrets
 .env

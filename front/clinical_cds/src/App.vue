@@ -166,6 +166,7 @@ import {
   UserFilled,
   WarningFilled,
 } from '@element-plus/icons-vue'
+import DOMPurify from 'dompurify'
 import { marked } from 'marked'
 
 interface SessionItem {
@@ -185,6 +186,8 @@ const messages = ref<ChatMessage[]>([])
 const inputMessage = ref('')
 const isThinking = ref(false)
 const msgContainer = ref<HTMLElement | null>(null)
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:5000'
+const apiAuthToken = import.meta.env.VITE_API_AUTH_TOKEN || ''
 
 const scenarios = [
   {
@@ -239,7 +242,8 @@ const knowledgeSources = [
 ]
 
 function renderMarkdown(text: string) {
-  return marked.parse(text, { breaks: true, gfm: true }) as string
+  const html = marked.parse(text, { breaks: true, gfm: true }) as string
+  return DOMPurify.sanitize(html)
 }
 
 function selectSession(sessionId: string) {
@@ -297,10 +301,18 @@ async function sendQuery(preset?: string) {
   await scrollMessages()
 
   try {
-    const response = await fetch('http://127.0.0.1:5000/api/chat', {
+    const headers: Record<string, string> = {
+      'Content-Type': 'application/json',
+      'X-User-Id': userId.value,
+    }
+    if (apiAuthToken) {
+      headers.Authorization = `Bearer ${apiAuthToken}`
+    }
+
+    const response = await fetch(`${apiBaseUrl}/api/chat`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, user_id: userId.value, session_id: currentSessionId.value }),
+      headers,
+      body: JSON.stringify({ query, session_id: currentSessionId.value }),
     })
 
     if (!response.ok || !response.body) {

@@ -7,7 +7,7 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 if PROJECT_DIR not in sys.path:
     sys.path.append(PROJECT_DIR)
 
-from infra.cache import semantic_cache
+from app.infra.cache import semantic_cache
 
 # 预设的临床 QA 列表 (高频标准诊疗问题)
 PRESET_QA = [
