@@ -10,6 +10,7 @@ AGENT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path
 if AGENT_DIR not in sys.path:
     sys.path.insert(0, AGENT_DIR)
 
+from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 from core.workflow.graph_manager import AgentGraphManager
 from core.memory.memory_manager import MemoryManager
@@ -25,6 +26,50 @@ SHORT_QUERY_RESPONSE = (
     "请输入更完整的临床问题或患者信息，例如症状、持续时间、严重程度、既往用药、"
     "量表分数或需要审查的药物组合。当前输入过短，系统不会进入诊疗推理流程。"
 )
+
+
+def _create_memory_extraction_llm():
+    from config import get_settings
+
+    return ChatOpenAI(**get_settings().get_model_config(), temperature=0)
+
+
+async def _run_long_term_memory_extract(user_id: str, session_id: str) -> None:
+    start = time.perf_counter()
+    if not memory:
+        logger.info(
+            "event=long_term_memory_extract_skipped user_id=%s session_id=%s reason=memory_unavailable",
+            user_id,
+            session_id,
+        )
+        return
+    if not memory.long_term.available:
+        logger.info(
+            "event=long_term_memory_extract_skipped user_id=%s session_id=%s reason=long_term_unavailable",
+            user_id,
+            session_id,
+        )
+        return
+
+    logger.info("event=long_term_memory_extract_start user_id=%s session_id=%s", user_id, session_id)
+    try:
+        llm = _create_memory_extraction_llm()
+        new_items = await memory.background_extract(user_id, session_id, llm)
+        logger.info(
+            "event=long_term_memory_extract_complete user_id=%s session_id=%s count=%d elapsed=%.3fs",
+            user_id,
+            session_id,
+            len(new_items or []),
+            time.perf_counter() - start,
+        )
+    except Exception as exc:
+        logger.warning(
+            "event=long_term_memory_extract_failed user_id=%s session_id=%s elapsed=%.3fs error=%s",
+            user_id,
+            session_id,
+            time.perf_counter() - start,
+            exc,
+        )
 
 async def init_agent_system():
     global graph, memory
@@ -200,6 +245,12 @@ async def stream_chat(query: str, user_id: str, session_id: str):
         ]
         await memory.save_conversation(user_id, session_id, turn)
         log_step("short_term_memory_save")
+        asyncio.create_task(_run_long_term_memory_extract(user_id, session_id))
+        logger.info(
+            "event=long_term_memory_extract_scheduled user_id=%s session_id=%s",
+            user_id,
+            session_id,
+        )
 
     yield emit_sse({"done": True}, "done")
     log_step("sse_complete")

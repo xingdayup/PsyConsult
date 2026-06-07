@@ -222,13 +222,13 @@ class MemoryManager:
             llm: LangChain-compatible chat model for preference extraction.
         """
         if not self.long_term.available:
-            return
+            return []
         if not user_id or not session_id:
-            return
+            return []
     
         messages = await self.short_term.get_messages(user_id, session_id)
-        if len(messages) < 4:  # need at least 2 full turns
-            return
+        if len(messages) < 2:  # need at least 1 full user/assistant turn
+            return []
     
         recent = messages[-_MAX_HISTORY_TURNS:]
         conversation_text = "\n".join(

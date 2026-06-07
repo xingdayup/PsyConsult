@@ -32,6 +32,7 @@ if hasattr(sys.stdout, 'reconfigure'):
 
 from config import get_settings
 from core.memory import MemoryManager
+from langchain_openai import ChatOpenAI
 from langchain_core.messages import HumanMessage
 from core.workflow.graph_manager import AgentGraphManager
 from core.workflow.state import AgentState
@@ -46,6 +47,10 @@ def setup_logging(log_level: str = "INFO") -> None:
             logging.StreamHandler(sys.stdout),
         ]
     )
+
+
+def _create_memory_extraction_llm():
+    return ChatOpenAI(**get_settings().get_model_config(), temperature=0)
 
 async def _extract_memory_context(memory: MemoryManager, user_id: str, session_id: str, query: str) -> str:
     """从 Redis（短期）和 Milvus（长期）获取内存上下文的辅助函数。"""
@@ -151,7 +156,9 @@ async def run_interactive_mode(
             turn_count += 1
             if turn_count % 5 == 0:
                 print("🔄 [Background] Triggering long-term memory extraction...")
-                asyncio.create_task(memory.extract_and_save_preferences(user_id, session_id))
+                asyncio.create_task(
+                    memory.background_extract(user_id, session_id, _create_memory_extraction_llm())
+                )
 
     except KeyboardInterrupt:
         print("\n\n👋 Goodbye!")
@@ -161,7 +168,7 @@ async def run_interactive_mode(
     finally:
         print("\n" + "-" * 60)
         print("💾 Saving session preferences to long-term memory...")
-        await memory.extract_and_save_preferences(user_id, session_id)
+        await memory.finalize_session(user_id, session_id, _create_memory_extraction_llm())
         print("✅ Session finalized.")
         print("-" * 60 + "\n")
 
