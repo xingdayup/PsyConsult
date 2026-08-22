@@ -2,7 +2,8 @@ version: '3.8'
 
 services:
   redis:
-    image: redis:7-alpine
+    # redis-stack 自带 RediSearch 模块，LangGraph Checkpoint (langgraph-checkpoint-redis) 依赖 FT.* 命令
+    image: redis/redis-stack-server:7.4.0-v0
     container_name: clinical_redis
     ports:
       - "6379:6379"

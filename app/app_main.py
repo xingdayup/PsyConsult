@@ -17,7 +17,7 @@ from contextlib import asynccontextmanager
 from app.app_config.settings import settings
 from app.infra.logging_config import configure_backend_logging
 from app.router import chat
-from app.service.chat_service import init_agent_system
+from app.service.chat_service import init_agent_system, shutdown_agent_system
 
 configure_backend_logging()
 
@@ -27,7 +27,7 @@ async def lifespan(app: FastAPI):
     await init_agent_system()
     yield
     # 关闭时清理
-    pass
+    await shutdown_agent_system()
 
 app = FastAPI(title="Clinical Decision Support System API", lifespan=lifespan)
 

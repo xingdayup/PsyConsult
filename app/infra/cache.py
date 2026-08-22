@@ -180,6 +180,10 @@ class SemanticCache:
         base_url = (settings.base_url or "").lower()
         if "dashscope.aliyuncs.com" in base_url:
             return settings.dashscope_api_key.strip()
+
+        # 未配置独立 LLM 渠道时，聊天模型直接走 DashScope，该 Key 同样可用于 embedding
+        if not settings.llm_api_key and not settings.base_url:
+            return settings.dashscope_api_key.strip()
         return None
 
     def _query_one(self, filter_expr: str) -> dict[str, Any] | None:

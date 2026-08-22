@@ -39,15 +39,17 @@ def _get_graph_instance():
 
         total_start = time.perf_counter()
         step_start = total_start
-        neo4j_uri = os.getenv("NEO4J_URI", "bolt://YOUR_NEO4J_HOST:7687")
-        neo4j_user = os.getenv("NEO4J_USER", "neo4j")
+        from config import get_settings
+        neo4j_settings = get_settings()
+        neo4j_uri = neo4j_settings.neo4j_uri
+        neo4j_user = neo4j_settings.neo4j_user
 
         print("🔌 [Init] 正在连接 Neo4j 数据库...")
         print(f"🔎 [Neo4j] uri={neo4j_uri} user={neo4j_user}")
         graph = Neo4jGraph(
             url=neo4j_uri,
             username=neo4j_user,
-            password=os.getenv("NEO4J_PASSWORD", "YOUR_NEO4J_PASSWORD")
+            password=neo4j_settings.neo4j_password
         )
         step_start = _log_elapsed("neo4j:init", "创建 Neo4jGraph 客户端", step_start)
 

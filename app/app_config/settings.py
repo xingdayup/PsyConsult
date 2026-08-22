@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     base_url: str | None = None
     embedding_api_key: str | None = None
     enable_semantic_cache: bool = True
-    redis_url: str
+    redis_url: str = "redis://localhost:6379"
     milvus_host: str = "localhost"
     milvus_port: int = 19530
     milvus_api_key: str | None = None

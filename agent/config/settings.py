@@ -47,7 +47,7 @@ class Settings(BaseSettings):
     # Neo4j (knowledge graph)
     neo4j_uri: str = Field(default="bolt://localhost:7687", alias="NEO4J_URI")
     neo4j_user: str = Field(default="neo4j", alias="NEO4J_USER")
-    neo4j_password: str = Field(default="password", alias="NEO4J_PASSWORD")
+    neo4j_password: str = Field(default="password123", alias="NEO4J_PASSWORD")
     neo4j_database: str = Field(default="neo4j", alias="NEO4J_DATABASE")
     
     # Logging
@@ -69,6 +69,9 @@ class Settings(BaseSettings):
         }
         if self.base_url:
             config["base_url"] = self.base_url
+        elif not self.llm_api_key:
+            # DashScope Key 需走 OpenAI 兼容模式端点
+            config["base_url"] = "https://dashscope.aliyuncs.com/compatible-mode/v1"
         return config
 
     def get_llm_api_key(self) -> str:
@@ -86,6 +89,10 @@ class Settings(BaseSettings):
         if self.llm_api_key and self.dashscope_api_key:
             return self.dashscope_api_key
         if self.base_url and "dashscope.aliyuncs.com" in self.base_url.lower():
+            return self.dashscope_api_key
+        # 未配置独立 LLM 渠道时，聊天模型直接走 DashScope，
+        # 该 Key 同样可用于 embedding，与 CLI（main.py）行为保持一致。
+        if not self.llm_api_key and not self.base_url:
             return self.dashscope_api_key
         return None
 

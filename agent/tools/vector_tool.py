@@ -40,21 +40,9 @@ def _log_elapsed(scope: str, label: str, start: float) -> float:
     return now
 
 def _get_embedding_api_key() -> str | None:
-    explicit_key = (
-        os.getenv("DASHSCOPE_EMBEDDING_API_KEY")
-        or os.getenv("EMBEDDING_API_KEY")
-    )
-    if explicit_key:
-        return explicit_key.strip()
+    from config import get_settings
 
-    if os.getenv("LLM_API_KEY") and os.getenv("DASHSCOPE_API_KEY"):
-        return os.getenv("DASHSCOPE_API_KEY").strip()
-
-    base_url = (os.getenv("BASE_URL") or "").lower()
-    if "dashscope.aliyuncs.com" in base_url:
-        api_key = os.getenv("DASHSCOPE_API_KEY")
-        return api_key.strip() if api_key else None
-    return None
+    return get_settings().get_embedding_api_key()
 
 def _get_milvus_store():
     global _milvus_instance

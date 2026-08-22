@@ -64,20 +64,21 @@ Vue 前端 (Vite :5173)
   → Bearer Token 鉴权 + X-User-Id 验证 (app/router/chat.py)
   → 输入长度校验 (≥4 个非空白字符)
   → 语义缓存检查 Milvus Collection: qa_semantic_cache (app/infra/cache.py)
-    命中 → 直接返回缓存答案
+    命中 → 直接返回缓存答案（该轮仍写入 checkpoint 保持多轮连续）
     未命中 → 进入 LangGraph 多 Agent 工作流
-  → 记忆上下文提取（Redis 短期 + Milvus 长期）
+  → 长期临床要点检索（Milvus）；近期历史由 checkpoint 自动携带
   → LangGraph Agent 图 (agent/core/workflow/graph_manager.py)
+    - 会话状态经 Checkpoint + Redis 持久化（session_id 为 thread_id）
+    - 图入口历史压缩节点：超阈值时旧消息摘要为一条 SystemMessage
   → SSE 流式响应逐节点推送
-  → 保存短期记忆到 Redis
 ```
 
 ### 三层结构
 
 **`agent/`** — LangGraph 多智能体推理核心
 - `agents/` — 领域 Agent：`orchestrator.py`（路由）、`diagnosis_agent.py`（鉴别诊断）、`treatment_agent.py`（治疗推荐）、`drug_review_agent.py`（药物审查）
-- `core/workflow/` — `graph_manager.py`（StateGraph 组装）、`state.py`（AgentState TypedDict）
-- `core/memory/` — `memory_manager.py`（统一入口）、`short_term.py`（Redis）、`long_term.py`（Milvus）、`preference_extractor.py`（LLM 偏好提取）
+- `core/workflow/` — `graph_manager.py`（StateGraph 组装、历史压缩节点）、`state.py`（AgentState TypedDict，messages 用 add_messages reducer）、`checkpointer.py`（AsyncRedisSaver 工厂，session_id 作 thread_id）
+- `core/memory/` — `memory_manager.py`（长期记忆统一入口）、`long_term.py`（Milvus）、`preference_extractor.py`（LLM 临床要点提取）
 - `core/graph/` — Neo4j 知识图谱客户端、模型、解析器
 - `core/mcp/` — MCP 工具管理
 - `tools/` — `graph_tool.py`、`synonym_tool.py`、`vector_tool.py`
@@ -102,20 +103,24 @@ Vue 前端 (Vite :5173)
 ### Agent 图编排（LangGraph StateGraph）
 
 ```
-START → orchestrator（路由 LLM 判断意图）
+START → history_compression（仅启用 checkpoint 时；超阈值摘要旧消息）
+     → orchestrator（路由 LLM 判断意图）
            ├─→ differential_diagnosis → treatment_recommend → drug_interaction → END
            ├─→ treatment_recommend     → drug_interaction → END
            └─→ drug_interaction        → END
 ```
 
-状态在 `AgentState` TypedDict 中传递：`messages`、`next_agent`、`user_id`、`session_id`、`memory_context`、`metadata`。
+状态在 `AgentState` TypedDict 中传递：`messages`（add_messages reducer，跨轮累积）、`next_agent`、`user_id`、`session_id`、`memory_context`、`metadata`。
 
 ### 关键设计点
 
+- **会话级状态**：LangGraph Checkpoint + Redis（`core/workflow/checkpointer.py`），`session_id` 作 `thread_id`，保存病例信息、中间推理结果与工具调用上下文；TTL 24 小时读时续期。Redis 不可用时图退化为无状态执行。
+- **上下文长度控制**：消息超过 16 条时，除最近 8 条外摘要为一条 SystemMessage（历史压缩节点，短期窗口 + 历史摘要）。
+- **长期记忆**：每 5 轮从 checkpoint 历史提取临床要点（主诉/诊断/用药/量表分）写入 Milvus，跨会话语义检索注入 `memory_context`。
 - **两套 Settings**：`agent/config/settings.py`（`@lru_cache`，Agent 使用）和 `app/app_config/settings.py`（模块级单例，FastAPI 使用），都读 `agent/.env`。两者字段不完全一致。
 - **路径注入**：`app/app_main.py` 和 `app/service/chat_service.py` 都将 `agent/` 目录插入 `sys.path`，因此 app 层可以直接 `from config import get_settings`、`from core.workflow.graph_manager import AgentGraphManager`。
 - **日志**：Agent 层用 `logging.getLogger("clinical_cds.agent")`；App 层用 `logging.getLogger("clinical_cds.chat")`，同时输出到控制台和 `logs/backend.log`（5MB 轮转，保留 5 个备份）。
-- **记忆系统优雅降级**：Redis/Milvus 不可用时自动跳过，不阻塞推理流程。长期偏好每 5 轮异步提取。
+- **优雅降级**：Redis（checkpoint）不可用时图无状态运行；Milvus 不可用时长期记忆与语义缓存自动跳过，均不阻塞推理流程。
 - **鉴权**：`API_AUTH_TOKEN` 非空时强制 Bearer Token 验证（`secrets.compare_digest`）；`X-User-Id` 必须匹配 `^[A-Za-z0-9_.:-]{1,128}$`。
 - **前端安全**：marked 渲染用户/GPT 内容前经过 DOMPurify 净化。
 
