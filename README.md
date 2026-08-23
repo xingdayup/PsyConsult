@@ -25,7 +25,7 @@ Vue 3 前端 (Vite :5173)
 | `front/clinical_cds/` | Vue 3 + TypeScript 单页应用（三栏工作台） |
 | `docker/` | Redis（redis-stack）、Milvus、Neo4j、MySQL 本地基础服务 |
 | `mock_data/` | 临床指南、ICD-11 诊断标准、药物资料 |
-| `docs/` | 中文学习文档（01–08） |
+| `learn/` | 中文学习文档（01–15：架构走读、实测、踩坑、面试准备） |
 
 ## 记忆体系
 
@@ -52,7 +52,7 @@ python -m uvicorn app.app_main:app --host 0.0.0.0 --port 5000
 cd front/clinical_cds && npm install && npm run dev
 ```
 
-`agent/.env` 完整可选项见 `CLAUDE.md` / `docs/02-environment-configuration.md`；Redis/Milvus/Neo4j 未配置时均有默认值，与 `docker/docker-compose.yml` 对齐。
+`agent/.env` 完整可选项见 `CLAUDE.md` 与 `learn/02-tech-stack/`；Redis/Milvus/Neo4j 未配置时均有默认值，与 `docker/docker-compose.yml` 对齐。
 
 ## 常用命令
 

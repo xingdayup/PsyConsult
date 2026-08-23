@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Quick reference for ZCode agents working in this repo. Detailed docs: `CLAUDE.md` (root), `front/clinical_cds/CLAUDE.md`, and `docs/01`–`08` (Chinese).
+Quick reference for ZCode agents working in this repo. Detailed docs: `CLAUDE.md` (root), `front/clinical_cds/CLAUDE.md`, and `learn/01`–`15` (Chinese study guide).
 
 ## Project
 
@@ -13,7 +13,7 @@ Quick reference for ZCode agents working in this repo. Detailed docs: `CLAUDE.md
 - `front/clinical_cds/` — Vue 3 + TypeScript + Vite SPA (Element Plus, marked + DOMPurify)
 - `docker/` — compose file for Redis, Milvus, Neo4j, MySQL
 - `mock_data/` — clinical guidelines, ICD-11 criteria, drug data
-- `docs/` — learning docs in Chinese
+- `learn/` — Chinese study guide (project walkthrough + interview prep)
 
 ## Commands
 
@@ -69,7 +69,7 @@ npm run build        # type-check + build (use as the frontend validation gate)
 
 ## Docs to read before sensitive changes
 
-- Auth/security: `docs/04-backend-api.md`, `app/test/test_chat_security.py`
-- Agent workflow/memory: `docs/03-agent-system.md`, `docs/06-data-and-ingestion.md`
-- Frontend: `docs/05-frontend.md`, `front/clinical_cds/CLAUDE.md`
-- Troubleshooting: `docs/07-testing-and-troubleshooting.md`
+- Auth/security: `learn/12-security-engineering/`, `app/test/test_chat_security.py`
+- Agent workflow/memory: `learn/04-state-graph/` … `learn/08-long-term-memory/`
+- Frontend: `front/clinical_cds/CLAUDE.md`
+- Troubleshooting: `learn/10-e2e-verification/`, `learn/11-pitfalls/`
